@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEPAflow — Plattform-Vorschau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E1B2C;
+    --ink-soft: #2B3A52;
+    --ink-mid: #5A6A82;
+    --paper: #FAF7F2;
+    --paper-warm: #F2EDE4;
+    --canvas: #F6F4EF;
+    --accent: #B8202E;
+    --accent-deep: #8C1822;
+    --rule: #D4C9B6;
+    --rule-soft: #E8E0D1;
+    --gold: #B89968;
+    --green: #2D6A4F;
+    --green-soft: #D8E4DC;
+    --amber: #B88D2A;
+    --amber-soft: #F2E8C9;
+    --red: #B8202E;
+    --red-soft: #F4DDDF;
+    --blue: #2B5797;
+    --blue-soft: #DCE5F2;
+    --shadow-card: 0 1px 3px rgba(14, 27, 44, 0.04), 0 8px 24px -8px rgba(14, 27, 44, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    background: var(--canvas);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 16px;
+  }
+
+  .serif { font-family: 'Fraunces', Georgia, serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  /* ============ INTRO BANNER ============ */
+  .intro {
+    max-width: 1280px;
+    margin: 0 auto 48px;
+    text-align: center;
+    padding: 0 16px;
+  }
+  .intro-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .intro h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .intro h1 em { color: var(--accent); font-style: italic; }
+  .intro p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .intro-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .intro-nav a {
+    padding: 8px 16px;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 2px;
+    background: white;
+    transition: all 0.15s;
+  }
+  .intro-nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ============ MOCKUP CONTAINER ============ */
+  .mockup {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 30px 80px -30px rgba(14, 27, 44, 0.25), 0 0 0 1px var(--rule-soft);
+    overflow: hidden;
+  }
+  .mockup-label {
+    max-width: 1280px;
+    margin: 0 auto 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-left: 16px;
+  }
+  .mockup-label span { color: var(--accent); margin-right: 8px; }
+
+  /* Browser chrome */
+  .chrome {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--rule-soft);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .chrome-dots { display: flex; gap: 6px; }
+  .chrome-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--rule);
+  }
+  .chrome-url {
+    background: white;
+    border: 1px solid var(--rule-soft);
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-mid);
+    flex: 1;
+    max-width: 540px;
+  }
+  .chrome-url::before { content: "🔒  "; opacity: 0.5; }
+
+  /* App layout */
+  .app {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 720px;
+    background: var(--canvas);
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background: var(--ink);
+    color: rgba(250, 247, 242, 0.7);
+    padding: 24px 0;
+  }
+  .side-logo {
+    padding: 0 24px 24px;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--paper);
+    border-bottom: 1px solid rgba(250, 247, 242, 0.08);
+    letter-spacing: -0.02em;
+  }
+  .side-logo span { color: var(--accent); }
+
+  .side-section {
+    padding: 24px 0 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(250, 247, 242, 0.4);
+    padding-left: 24px;
+  }
+  .side-item {
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+    color: rgba(250, 247, 242, 0.75);
+  }
+  .side-item:hover { background: rgba(250, 247, 242, 0.05); color: var(--paper); }
+  .side-item.active {
+    background: rgba(184, 32, 46, 0.15);
+    color: var(--paper);
+    border-left: 3px solid var(--accent);
+    padding-left: 21px;
+  }
+  .side-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    background: rgba(250, 247, 242, 0.1);
+    padding: 2px 6px;
+    border-radius: 8px;
+  }
+  .side-badge.alert { background: var(--accent); color: white; }
+
+  .side-user {
+    margin-top: auto;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(250, 247, 242, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+  }
+  .side-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* Main content */
+  .main { padding: 24px 32px; overflow: hidden; }
+
+  /* Topbar */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topbar-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .topbar-breadcrumb {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mid);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+  .topbar-actions { display: flex; gap: 8px; }
+  .btn {
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    background: white;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 13px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover { border-color: var(--ink); }
+  .btn-primary {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* ============ SCREEN 1: DASHBOARD ============ */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--rule-soft);
+    padding: 18px 20px;
+    border-radius: 4px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .stat-trend {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    background: var(--green-soft);
+    color: var(--green);
+  }
+  .stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-sub {
+    font-size: 11px;
+    color: var(--ink-mid);
+  }
+
+  .dash-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 16px;
+  }
+  .panel {
+    background: white;
+    border: 1px solid var(--rule-soft);
+    padding: 20px 22px;
+    border-radius: 4px;
+  }
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .panel-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .panel-action {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Workflow list */
+  .work-row {
+    display: grid;
+    grid-template-columns: 32px 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 13px;
+  }
+  .work-row:last-child { border-bottom: none; }
+  .work-icon {
+    width: 28px; height: 28px;
+    background: var(--paper-warm);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .work-icon.done { background: var(--green-soft); color: var(--green); }
+  .work-icon.active { background: var(--accent); color: white; }
+  .work-icon.pending { background: var(--paper-warm); color: var(--ink-mid); }
+  .work-title { color: var(--ink); font-size: 13px; }
+  .work-sub { font-size: 11px; color: var(--ink-mid); margin-top: 2px; }
+  .work-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mid);
+  }
+  .work-status {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .work-status.done { background: var(--green-soft); color: var(--green); }
+  .work-status.active { background: var(--amber-soft); color: var(--amber); }
+  .work-status.wait { background: var(--blue-soft); color: var(--blue); }
+
+  /* Watcher alerts */
+  .alert-row {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .alert-row:last-child { border-bottom: none; }
+  .alert-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .alert-dot.info { background: var(--blue); }
+  .alert-dot.gold { background: var(--gold); }
+  .alert-content { flex: 1; font-size: 13px; }
+  .alert-content strong { color: var(--ink); display: block; margin-bottom: 2px; }
+  .alert-content span { color: var(--ink-mid); font-size: 12px; }
+  .alert-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mid);
+    flex-shrink: 0;
+  }
+
+  /* ============ SCREEN 2: CLASSIFIER ============ */
+  .classifier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .input-block {
+    background: white;
+    border: 1px solid var(--rule-soft);
+    padding: 24px;
+    border-radius: 4px;
+  }
+  .input-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+  }
+  .input-textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    resize: vertical;
+    min-height: 80px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  .input-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .input-meta input {
+    padding: 10px 12px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    font-family: inherit;
+    font-size: 13px;
+    border-radius: 2px;
+  }
+
+  .classifier-results {
+    background: white;
+    border: 1px solid var(--rule-soft);
+    padding: 24px;
+    border-radius: 4px;
+  }
+  .ai-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+  .ai-banner-left { display: flex; align-items: center; gap: 8px; }
+  .ai-banner-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+  }
+  .ai-model { font-family: 'IBM Plex Mono', monospace; opacity: 0.8; font-size: 11px; }
+
+  .candidate {
+    border: 1px solid var(--rule-soft);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--paper);
+  }
+  .candidate:hover { border-color: var(--ink); }
+  .candidate.selected {
+    border-color: var(--accent);
+    background: white;
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .candidate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .candidate-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .candidate-name {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .candidate-confidence {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .conf-bar {
+    height: 4px;
+    background: var(--paper-warm);
+    flex: 1;
+    border-radius: 2px;
+    overflow: hidden;
+    max-width: 120px;
+  }
+  .conf-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+  }
+  .conf-fill.medium { background: var(--amber); }
+  .conf-fill.low { background: var(--red); }
+  .conf-pct {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .candidate-reasoning {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--rule);
+    font-style: italic;
+  }
+
+  .confirm-block {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--amber-soft);
+    border-left: 3px solid var(--amber);
+    border-radius: 2px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .confirm-block .check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .confirm-block input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--accent);
+  }
+  .confirm-block label { cursor: pointer; }
+
+  /* ============ SCREEN 3: ORIGIN CHECK ============ */
+  .origin-summary {
+    background: var(--green-soft);
+    border-left: 4px solid var(--green);
+    padding: 20px 24px;
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .origin-summary.warn {
+    background: var(--amber-soft);
+    border-left-color: var(--amber);
+  }
+  .origin-icon {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--green);
+  }
+  .origin-icon.warn { color: var(--amber); }
+  .origin-text strong {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    display: block;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .origin-text span { font-size: 13px; color: var(--ink-soft); }
+  .origin-pct {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    color: var(--green);
+    line-height: 1;
+    text-align: right;
+  }
+  .origin-pct small {
+    font-size: 12px;
+    color: var(--ink-mid);
+    display: block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-top: 4px;
+  }
+
+  .bom-table {
+    background: white;
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bom-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .bom-table th {
+    background: var(--paper-warm);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bom-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    color: var(--ink);
+  }
+  .bom-table tr:last-child td { border-bottom: none; }
+  .bom-table tr.eu td:nth-child(3) { color: var(--green); font-weight: 500; }
+  .bom-table tr.non-eu td:nth-child(3) { color: var(--ink-mid); }
+  .bom-flag {
+    display: inline-block;
+    width: 18px; height: 13px;
+    margin-right: 6px;
+    vertical-align: middle;
+    border-radius: 1px;
+  }
+  .bom-flag.ch { background: var(--accent); position: relative; }
+  .bom-flag.ch::before, .bom-flag.ch::after {
+    content: ""; position: absolute; background: white;
+  }
+  .bom-flag.ch::before { left: 8px; top: 2px; width: 2px; height: 9px; }
+  .bom-flag.ch::after { left: 5px; top: 5px; width: 8px; height: 3px; }
+  .bom-flag.de { background: linear-gradient(to bottom, #000 33%, #DD0000 33%, #DD0000 66%, #FFCE00 66%); }
+  .bom-flag.it { background: linear-gradient(to right, #009246 33%, #fff 33%, #fff 66%, #CE2B37 66%); }
+  .bom-flag.cn { background: #DE2910; }
+  .bom-flag.in { background: linear-gradient(to bottom, #FF9933 33%, #fff 33%, #fff 66%, #138808 66%); }
+  .bom-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-align: right !important;
+  }
+
+  .rec-block {
+    margin-top: 20px;
+    background: white;
+    border: 1px solid var(--rule-soft);
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .rec-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rec-title::before {
+    content: "→";
+    color: var(--accent);
+  }
+  .rec-list { list-style: none; }
+  .rec-list li {
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .rec-list li:last-child { border-bottom: none; }
+  .rec-list strong { color: var(--ink); }
+
+  /* Tab nav inside mockup */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--rule-soft);
+    margin-bottom: 24px;
+  }
+  .tab {
+    padding: 10px 18px;
+    font-size: 13px;
+    color: var(--ink-mid);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .dash-grid { grid-template-columns: 1fr; }
+    .classifier-grid { grid-template-columns: 1fr; }
+    .intro h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <div class="intro-eyebrow">— Vorschau · Pilot-Plattform</div>
+  <h1 class="serif">Drei Screens. <em>Eine Plattform.</em></h1>
+  <p>So wird TEPAflow für Pilotkunden ab Q3 2026 aussehen. Diese Mockups dienen der Tiefen-Demo am Forum — die finale Plattform wird im Pilotprogramm gemeinsam mit den Founding Members entwickelt.</p>
+  <div class="intro-nav">
+    <a href="#screen-1">① Dashboard</a>
+    <a href="#screen-2">② Klassifikator</a>
+    <a href="#screen-3">③ Ursprungs-Prüfer</a>
+  </div>
+</div>
+
+<!-- ============ SCREEN 1: DASHBOARD ============ -->
+<div class="mockup-label" id="screen-1"><span>SCREEN 01</span> · DASHBOARD · ÜBERSICHT FÜR DEN EXPORTLEITER</div>
+<div class="mockup">
+  <div class="chrome">
+    <div class="chrome-dots">
+      <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+    </div>
+    <div class="chrome-url">app.tepaflow.ch / dashboard</div>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="side-logo">TEPA<span>flow</span></div>
+      <div class="side-section">Operativ</div>
+      <div class="side-item active">Dashboard <span class="side-badge">12</span></div>
+      <div class="side-item">Produkte</div>
+      <div class="side-item">Sendungen</div>
+      <div class="side-item">Dokumente</div>
+      <div class="side-section">KI-Agenten</div>
+      <div class="side-item">Klassifikator</div>
+      <div class="side-item">Ursprungs-Prüfer</div>
+      <div class="side-item">Wächter <span class="side-badge alert">3</span></div>
+      <div class="side-item">Lieferanten-Bot</div>
+      <div class="side-section">Konto</div>
+      <div class="side-item">Einstellungen</div>
+      <div class="side-item">Audit-Log</div>
+      <div class="side-user">
+        <div class="side-avatar">MF</div>
+        <div>
+          <div style="color: var(--paper); font-weight: 500;">Markus Frei</div>
+          <div style="font-size: 11px; opacity: 0.6;">Mustermann AG</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="topbar-breadcrumb">DASHBOARD · APRIL 2026</div>
+          <div class="topbar-title serif">Guten Tag, Markus.</div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn">Bericht exportieren</button>
+          <button class="btn btn-primary">+ Neue Sendung</button>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Zollersparnis YTD <span class="stat-trend">↑ 12 %</span></div>
+          <div class="stat-value">CHF 184'320</div>
+          <div class="stat-sub">vs. CHF 164'200 im Vorjahr</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Sendungen Q2 <span class="stat-trend">↑ 8</span></div>
+          <div class="stat-value">47</div>
+          <div class="stat-sub">davon 47 mit TEPA-Präferenz</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Compliance-Rate <span class="stat-trend">100 %</span></div>
+          <div class="stat-value">100 %</div>
+          <div class="stat-sub">0 abgelehnte Anmeldungen</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Aktive Produkte</div>
+          <div class="stat-value">128</div>
+          <div class="stat-sub">davon 124 TEPA-qualifiziert</div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title serif">Aktive Workflows</div>
+            <a class="panel-action">Alle anzeigen →</a>
+          </div>
+
+          <div class="work-row">
+            <div class="work-icon done">✓</div>
+            <div>
+              <div class="work-title">Sendung #2025-1142 · Mumbai</div>
+              <div class="work-sub">Präzisionsbauteile, Wert CHF 28'400</div>
+            </div>
+            <div class="work-time">14:32</div>
+            <div class="work-status done">Akzeptiert</div>
+          </div>
+
+          <div class="work-row">
+            <div class="work-icon active">A</div>
+            <div>
+              <div class="work-title">Sendung #2025-1143 · Bengaluru</div>
+              <div class="work-sub">Signatur-Bot · Swisscom QES läuft</div>
+            </div>
+            <div class="work-time">14:48</div>
+            <div class="work-status active">In Arbeit</div>
+          </div>
+
+          <div class="work-row">
+            <div class="work-icon pending">3</div>
+            <div>
+              <div class="work-title">Sendung #2025-1144 · Delhi</div>
+              <div class="work-sub">Wartet auf Ihre Bestätigung · HS-Code</div>
+            </div>
+            <div class="work-time">15:02</div>
+            <div class="work-status wait">Bestätigung</div>
+          </div>
+
+          <div class="work-row">
+            <div class="work-icon pending">3</div>
+            <div>
+              <div class="work-title">Sendung #2025-1145 · Mumbai</div>
+              <div class="work-sub">Lieferanten-Bot · 3 von 12 Erklärungen ausstehend</div>
+            </div>
+            <div class="work-time">15:18</div>
+            <div class="work-status wait">Lieferanten</div>
+          </div>
+
+          <div class="work-row">
+            <div class="work-icon done">✓</div>
+            <div>
+              <div class="work-title">Sendung #2025-1141 · Chennai</div>
+              <div class="work-sub">eVV erhalten · in Archiv</div>
+            </div>
+            <div class="work-time">12:04</div>
+            <div class="work-status done">Abgeschlossen</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title serif">Wächter-Meldungen</div>
+            <a class="panel-action">3 ungelesen →</a>
+          </div>
+
+          <div class="alert-row">
+            <div class="alert-dot"></div>
+            <div class="alert-content">
+              <strong>Tarif-Reduktion auf HS 8483.20</strong>
+              <span>Ihr Hauptprodukt: Reduktion von 7.5 % auf 6.0 % per 1. Oktober 2026. Geschätzte Mehrersparnis: CHF 14'200/Jahr.</span>
+            </div>
+            <div class="alert-time">Vor 2 Std.</div>
+          </div>
+
+          <div class="alert-row">
+            <div class="alert-dot info"></div>
+            <div class="alert-content">
+              <strong>CAROTAR-Update Indien</strong>
+              <span>Form-I, Feld 9 verlangt ab 1.7. zusätzlich SKU. Ihre 124 Produkte werden automatisch ergänzt.</span>
+            </div>
+            <div class="alert-time">Gestern</div>
+          </div>
+
+          <div class="alert-row">
+            <div class="alert-dot gold"></div>
+            <div class="alert-content">
+              <strong>Lieferantenwechsel detektiert</strong>
+              <span>Komponente #BG-204 jetzt aus IT statt CN — Ursprungsstatus für 4 Produkte verbessert sich.</span>
+            </div>
+            <div class="alert-time">2 Tage</div>
+          </div>
+
+          <div class="alert-row">
+            <div class="alert-dot info"></div>
+            <div class="alert-content">
+              <strong>Passar-Wartung BAZG</strong>
+              <span>23. April, 02:00–04:00 — Anmeldungen werden vorgemerkt und automatisch nachgereicht.</span>
+            </div>
+            <div class="alert-time">3 Tage</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ SCREEN 2: KLASSIFIKATOR ============ -->
+<div class="mockup-label" id="screen-2"><span>SCREEN 02</span> · KI-KLASSIFIKATOR · HS-CODE-VORSCHLAG MIT KONFIDENZ</div>
+<div class="mockup">
+  <div class="chrome">
+    <div class="chrome-dots">
+      <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+    </div>
+    <div class="chrome-url">app.tepaflow.ch / klassifikator / neu</div>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="side-logo">TEPA<span>flow</span></div>
+      <div class="side-section">Operativ</div>
+      <div class="side-item">Dashboard</div>
+      <div class="side-item">Produkte</div>
+      <div class="side-item">Sendungen</div>
+      <div class="side-item">Dokumente</div>
+      <div class="side-section">KI-Agenten</div>
+      <div class="side-item active">Klassifikator</div>
+      <div class="side-item">Ursprungs-Prüfer</div>
+      <div class="side-item">Wächter <span class="side-badge alert">3</span></div>
+      <div class="side-item">Lieferanten-Bot</div>
+      <div class="side-section">Konto</div>
+      <div class="side-item">Einstellungen</div>
+      <div class="side-item">Audit-Log</div>
+      <div class="side-user">
+        <div class="side-avatar">MF</div>
+        <div>
+          <div style="color: var(--paper); font-weight: 500;">Markus Frei</div>
+          <div style="font-size: 11px; opacity: 0.6;">Mustermann AG</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="topbar-breadcrumb">KI-AGENT · KLASSIFIKATOR</div>
+          <div class="topbar-title serif">HS-Code Vorschlag</div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn">Verlauf</button>
+          <button class="btn">Test-Datensatz</button>
+        </div>
+      </div>
+
+      <div class="classifier-grid">
+        <div class="input-block">
+          <div class="input-label">Produktbeschreibung</div>
+          <textarea class="input-textarea">Präzisions-Kugellager, einreihig, gehärtet und geschliffen. Aussendurchmesser 42 mm, Innendurchmesser 20 mm, Breite 12 mm. Material: Wälzlagerstahl 100Cr6. Verwendung: Industrieantriebe, Werkzeugmaschinen.</textarea>
+
+          <div class="input-meta">
+            <input type="text" placeholder="Produktname / SKU" value="KL-204-CR6">
+            <input type="text" placeholder="Marke" value="Mustermann Premium">
+          </div>
+
+          <div class="input-meta">
+            <input type="text" placeholder="Material" value="Stahl, gehärtet">
+            <input type="text" placeholder="Verwendungszweck" value="Industrieantrieb">
+          </div>
+
+          <button class="btn btn-primary" style="width: 100%; padding: 12px;">⌗  Klassifikation starten</button>
+
+          <div style="margin-top: 16px; font-size: 12px; color: var(--ink-mid); padding-top: 16px; border-top: 1px dashed var(--rule); line-height: 1.6;">
+            <strong style="color: var(--ink);">Verfügbare Datenquellen:</strong> WCO HS Nomenklatur 2022, BAZG TARES, EU TARIC, indische Customs Tariff, interner Cache von 8'420 bisherigen Klassifikationen.
+          </div>
+        </div>
+
+        <div class="classifier-results">
+          <div class="ai-banner">
+            <div class="ai-banner-left">
+              <div class="ai-banner-dot"></div>
+              <span>Klassifikator aktiv · 3 Kandidaten gefunden</span>
+            </div>
+            <span class="ai-model">claude-haiku-4.5 · 1.4 s</span>
+          </div>
+
+          <div class="candidate selected">
+            <div class="candidate-header">
+              <div class="candidate-code">8482.10.10</div>
+              <div class="candidate-confidence">
+                <div class="conf-bar"><div class="conf-fill" style="width: 92%;"></div></div>
+                <div class="conf-pct" style="color: var(--green);">92 %</div>
+              </div>
+            </div>
+            <div class="candidate-name">Kugellager · einreihig · radial</div>
+            <div class="candidate-reasoning">
+              Begründung: Das beschriebene Wälzlager mit einreihiger Konstruktion und Radialbelastung fällt eindeutig unter Position 8482, Unterposition 10 (Kugellager). Die Materialangabe 100Cr6 (Wälzlagerstahl) und die typischen Maße bestätigen industrielle Anwendung. Indischer TEPA-Tarif: Position 8482.10 ist im Abbauplan E5 — von 7.5 % schrittweise auf 0 % bis 2030.
+            </div>
+          </div>
+
+          <div class="candidate">
+            <div class="candidate-header">
+              <div class="candidate-code">8482.99.00</div>
+              <div class="candidate-confidence">
+                <div class="conf-bar"><div class="conf-fill medium" style="width: 41%;"></div></div>
+                <div class="conf-pct" style="color: var(--amber);">41 %</div>
+              </div>
+            </div>
+            <div class="candidate-name">Wälzlager · Teile davon</div>
+          </div>
+
+          <div class="candidate">
+            <div class="candidate-header">
+              <div class="candidate-code">8483.20.00</div>
+              <div class="candidate-confidence">
+                <div class="conf-bar"><div class="conf-fill low" style="width: 18%;"></div></div>
+                <div class="conf-pct" style="color: var(--red);">18 %</div>
+              </div>
+            </div>
+            <div class="candidate-name">Lagergehäuse mit Wälzlager</div>
+          </div>
+
+          <div class="confirm-block">
+            <strong style="color: var(--ink);">Vor der Übernahme:</strong> Sie als Anmelder bleiben für die Korrektheit der HS-Klassifikation rechtlich verantwortlich. Die KI liefert einen begründeten Vorschlag, keine verbindliche Zollauskunft.
+            <div class="check-row">
+              <input type="checkbox" id="confirm" checked>
+              <label for="confirm">Ich bestätige Code <strong>8482.10.10</strong> als korrekte Klassifikation für KL-204-CR6.</label>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 12px;">Übernehmen & in Audit-Log eintragen</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ SCREEN 3: URSPRUNGS-PRÜFER ============ -->
+<div class="mockup-label" id="screen-3"><span>SCREEN 03</span> · URSPRUNGS-PRÜFER · STÜCKLISTE GEGEN TEPA ANNEX 2.A</div>
+<div class="mockup">
+  <div class="chrome">
+    <div class="chrome-dots">
+      <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+    </div>
+    <div class="chrome-url">app.tepaflow.ch / produkt / KL-204-CR6 / ursprung</div>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="side-logo">TEPA<span>flow</span></div>
+      <div class="side-section">Operativ</div>
+      <div class="side-item">Dashboard</div>
+      <div class="side-item">Produkte</div>
+      <div class="side-item">Sendungen</div>
+      <div class="side-item">Dokumente</div>
+      <div class="side-section">KI-Agenten</div>
+      <div class="side-item">Klassifikator</div>
+      <div class="side-item active">Ursprungs-Prüfer</div>
+      <div class="side-item">Wächter <span class="side-badge alert">3</span></div>
+      <div class="side-item">Lieferanten-Bot</div>
+      <div class="side-section">Konto</div>
+      <div class="side-item">Einstellungen</div>
+      <div class="side-item">Audit-Log</div>
+      <div class="side-user">
+        <div class="side-avatar">MF</div>
+        <div>
+          <div style="color: var(--paper); font-weight: 500;">Markus Frei</div>
+          <div style="font-size: 11px; opacity: 0.6;">Mustermann AG</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="topbar-breadcrumb">PRODUKT · KL-204-CR6 · HS 8482.10.10</div>
+          <div class="topbar-title serif">Ursprungs-Prüfung · TEPA Annex 2.A</div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn">Stückliste neu laden</button>
+          <button class="btn btn-primary">Ursprungserklärung erstellen →</button>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active">Stückliste</div>
+        <div class="tab">Anwendbare Regel</div>
+        <div class="tab">Lieferantenerklärungen (12)</div>
+        <div class="tab">Audit-Trail</div>
+      </div>
+
+      <div class="origin-summary">
+        <div class="origin-icon">✓</div>
+        <div class="origin-text">
+          <strong>TEPA-Ursprung erfüllt</strong>
+          <span>Regel: CTH + RVC ≥ 40 % nach Annex 2.A für Position 8482. Berechnung audit-fest gespeichert.</span>
+        </div>
+        <div class="origin-pct">
+          52.4 %
+          <small>Regional Value Content</small>
+        </div>
+      </div>
+
+      <div class="bom-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Komponente</th>
+              <th>HS-Code</th>
+              <th>Ursprung</th>
+              <th>Lieferanten-Erkl.</th>
+              <th class="bom-value">Wert (CHF)</th>
+              <th class="bom-value">Anteil</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="eu">
+              <td><strong>Außenring, gedreht</strong><br><small style="color: var(--ink-mid);">CR-100, 100Cr6</small></td>
+              <td class="mono">7228.30</td>
+              <td><span class="bom-flag ch"></span>Schweiz</td>
+              <td style="color: var(--green);">✓ Vorhanden</td>
+              <td class="bom-value">3'200.00</td>
+              <td class="bom-value">21.4 %</td>
+            </tr>
+            <tr class="eu">
+              <td><strong>Innenring, gedreht</strong><br><small style="color: var(--ink-mid);">IR-080, 100Cr6</small></td>
+              <td class="mono">7228.30</td>
+              <td><span class="bom-flag ch"></span>Schweiz</td>
+              <td style="color: var(--green);">✓ Vorhanden</td>
+              <td class="bom-value">2'750.00</td>
+              <td class="bom-value">18.4 %</td>
+            </tr>
+            <tr class="non-eu">
+              <td><strong>Stahlkugeln (8 Stk.)</strong><br><small style="color: var(--ink-mid);">SK-12 mm Präzision</small></td>
+              <td class="mono">7326.11</td>
+              <td><span class="bom-flag de"></span>Deutschland</td>
+              <td style="color: var(--green);">✓ Vorhanden</td>
+              <td class="bom-value">1'120.00</td>
+              <td class="bom-value">7.5 %</td>
+            </tr>
+            <tr class="non-eu">
+              <td><strong>Käfig, polymer</strong><br><small style="color: var(--ink-mid);">PA66-GF35</small></td>
+              <td class="mono">3926.90</td>
+              <td><span class="bom-flag it"></span>Italien</td>
+              <td style="color: var(--green);">✓ Vorhanden</td>
+              <td class="bom-value">680.00</td>
+              <td class="bom-value">4.6 %</td>
+            </tr>
+            <tr class="non-eu">
+              <td><strong>Dichtungen (2 Stk.)</strong><br><small style="color: var(--ink-mid);">NBR-Dichtring</small></td>
+              <td class="mono">4016.93</td>
+              <td><span class="bom-flag cn"></span>China</td>
+              <td style="color: var(--amber);">⊘ Nicht erforderlich</td>
+              <td class="bom-value">340.00</td>
+              <td class="bom-value">2.3 %</td>
+            </tr>
+            <tr class="eu">
+              <td><strong>Schmierfett</strong><br><small style="color: var(--ink-mid);">Hochleistungsfett, Lithium-Komplex</small></td>
+              <td class="mono">3403.99</td>
+              <td><span class="bom-flag ch"></span>Schweiz</td>
+              <td style="color: var(--green);">✓ Vorhanden</td>
+              <td class="bom-value">220.00</td>
+              <td class="bom-value">1.5 %</td>
+            </tr>
+            <tr class="eu">
+              <td><strong>Bearbeitung & Montage</strong><br><small style="color: var(--ink-mid);">Schleifen, Härten, Endmontage</small></td>
+              <td class="mono">—</td>
+              <td><span class="bom-flag ch"></span>Schweiz</td>
+              <td style="color: var(--green);">✓ Eigenleistung</td>
+              <td class="bom-value">6'690.00</td>
+              <td class="bom-value">44.7 %</td>
+            </tr>
+            <tr style="background: var(--paper-warm); font-weight: 500;">
+              <td colspan="4" style="text-align: right; padding-right: 16px; color: var(--ink);"><strong>Ab-Werk-Preis (EXW)</strong></td>
+              <td class="bom-value"><strong>15'000.00</strong></td>
+              <td class="bom-value"><strong>100 %</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rec-block">
+        <div class="rec-title serif">KI-Empfehlungen zur Optimierung</div>
+        <ul class="rec-list">
+          <li><strong>Risiko-Hinweis:</strong> Die Dichtungen aus China (CN) liegen unter der De-minimis-Schwelle von 10 % und gefährden den Ursprung nicht. Falls Sie jedoch eine Position 8482-spezifische Verschärfung erwarten, ein EU-Lieferant würde Ihre Sicherheitsmarge erhöhen.</li>
+          <li><strong>RVC-Marge:</strong> Aktuell 52.4 % bei einer Schwelle von 40 %. Sie haben 12.4 Prozentpunkte Puffer — sicher gegen Preisschwankungen oder Lieferantenwechsel.</li>
+          <li><strong>Lieferantenerklärungen:</strong> Alle relevanten Erklärungen vorhanden, längste Gültigkeit bis 31.12.2026 (Innenring CR-100). Wächter-Agent erinnert automatisch ab 60 Tage vor Ablauf.</li>
+          <li><strong>Indien-spezifisch:</strong> Für CAROTAR Form-I wird zusätzlich die Herstellungs-Beschreibung benötigt. Ist bereits aus dem Klassifikator-Schritt vorhanden.</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 32px 16px; color: var(--ink-mid); font-size: 13px;">
+  <p style="font-family: 'Fraunces', serif; font-size: 16px; color: var(--ink); margin-bottom: 8px;">Vielen Dank für Ihre Zeit.</p>
+  <p>Diese Mockups zeigen die geplante Pilot-Plattform. Das tatsächliche User Interface wird gemeinsam mit den Founding Members verfeinert.</p>
+  <p style="margin-top: 16px;">— TEPAflow · April 2026</p>
+</div>
+
+</body>
+</html>

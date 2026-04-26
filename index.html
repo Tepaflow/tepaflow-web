@@ -1,13 +1,71 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de-CH">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEPAflow — TEPA-Compliance für Schweizer Exporteure</title>
-<meta name="description" content="Zollersparnisse aus dem Freihandelsabkommen Schweiz–Indien automatisch nutzen. KI-gestützte Compliance-Plattform für Schweizer KMU.">
+
+<!-- DE (default) -->
+<title>TEPAflow — TEPA-Compliance für Schweizer Exporteure nach Indien</title>
+<meta name="description" content="Automatische TEPA-Compliance für Schweizer Exporteure nach Indien. HS-Codes, Ursprungsnachweise, CAROTAR-Paket, qualifizierte Signaturen. KI-gestützt, audit-fest, DSG-konform.">
+<meta name="keywords" content="TEPA, Freihandelsabkommen Schweiz Indien, EFTA Indien, CAROTAR, Ursprungsnachweis, HS-Code, EUR.1, Zollerklärung, Passar, BAZG, Ermächtigter Ausführer, Schweizer Export nach Indien, Zollersparnis, qualifizierte elektronische Signatur, QES, ZertES, Compliance Software, Zoll-Software KMU">
+
+<!-- Multilingual Meta -->
+<meta name="language" content="de,en,fr,it">
+<meta name="geo.region" content="CH">
+<meta name="author" content="TEPAflow">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="canonical" href="https://tepaflow.ch/">
+
+  <link rel="alternate" hreflang="de" href="https://tepaflow.ch/#de">
+  <link rel="alternate" hreflang="en" href="https://tepaflow.ch/#en">
+  <link rel="alternate" hreflang="fr" href="https://tepaflow.ch/#fr">
+  <link rel="alternate" hreflang="it" href="https://tepaflow.ch/#it">
+  <link rel="alternate" hreflang="x-default" href="https://tepaflow.ch/">
+
+<!-- OpenGraph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tepaflow.ch/">
+<meta property="og:title" content="TEPAflow — TEPA-Compliance für Schweizer Exporteure nach Indien">
+<meta property="og:description" content="Automatische TEPA-Compliance für Schweizer Exporteure nach Indien. HS-Codes, Ursprungsnachweise, CAROTAR-Paket, qualifizierte Signaturen. KI-gestützt, audit-fest, DSG-konform.">
+<meta property="og:site_name" content="TEPAflow">
+<meta property="og:locale" content="de_CH">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="fr_CH">
+<meta property="og:locale:alternate" content="it_CH">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TEPAflow — TEPA-Compliance für Schweizer Exporteure nach Indien">
+<meta name="twitter:description" content="Automatische TEPA-Compliance für Schweizer Exporteure nach Indien. HS-Codes, Ursprungsnachweise, CAROTAR-Paket, qualifizierte Signaturen. KI-gestützt, audit-fest, DSG-konform.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TEPAflow",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Automated TEPA compliance platform for Swiss exporters to India. HS codes, origin certificates, CAROTAR packages.",
+  "url": "https://tepaflow.ch",
+  "offers": {"@type": "Offer", "price": "6900", "priceCurrency": "CHF"},
+  "author": {
+    "@type": "Organization",
+    "name": "TEPAflow",
+    "url": "https://tepaflow.ch",
+    "email": "michael@tepaflow.ch",
+    "telephone": "+41-78-878-15-08",
+    "address": {"@type": "PostalAddress", "addressCountry": "CH"},
+    "availableLanguage": ["de","en","fr","it"]
+  }
+}
+</script>
+
+<!-- Fonts & Styles -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --ink: #0E1B2C;
@@ -646,10 +704,119 @@
     opacity: 0.03;
     mix-blend-mode: multiply;
   }
+
+  /* === Sprach-Umschalter === */
+  .lang-switcher {
+    display: flex;
+    gap: 2px;
+    margin-left: 20px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--paper-warm);
+  }
+  .lang-switcher .lang-item {
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .lang-switcher .lang-item:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .lang-switcher .lang-item.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  @media (max-width: 720px) {
+    .lang-switcher {
+      margin-left: 10px;
+    }
+    .lang-switcher .lang-item {
+      padding: 4px 6px;
+      font-size: 10px;
+    }
+  }
+
 </style>
+<style>
+
+  /* Sprach-Umschalter */
+  .lang-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    background: #0E1B2C;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 24px;
+    height: 36px;
+    gap: 2px;
+  }
+  .lang-bar a {
+    color: #8A9BB3;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+  .lang-bar a:hover { color: #FAF7F2; background: rgba(255,255,255,0.08); }
+  .lang-bar a.active { color: #FAF7F2; background: #B8202E; }
+  .lang-bar .lang-sep { color: #2B3A52; margin: 0 2px; font-size: 10px; }
+  body { padding-top: 36px; }
+  nav { top: 36px !important; }
+
+  /* Sprachversion verstecken */
+  .lang-version { display: none; }
+  .lang-version.active { display: block; }
+
+</style>
+
+<!-- Multilingual Title/Meta via JS -->
+<script>
+var _metas = {"de": {"title": "TEPAflow — TEPA-Compliance für Schweizer Exporteure nach Indien", "description": "Automatische TEPA-Compliance für Schweizer Exporteure nach Indien. HS-Codes, Ursprungsnachweise, CAROTAR-Paket, qualifizierte Signaturen. KI-gestützt, audit-fest, DSG-konform.", "keywords": "TEPA, Freihandelsabkommen Schweiz Indien, EFTA Indien, CAROTAR, Ursprungsnachweis, HS-Code, EUR.1, Zollerklärung, Passar, BAZG, Ermächtigter Ausführer, Schweizer Export nach Indien, Zollersparnis, qualifizierte elektronische Signatur, QES, ZertES, Compliance Software, Zoll-Software KMU"}, "en": {"title": "TEPAflow — TEPA Compliance for Swiss Exporters to India", "description": "Automated TEPA compliance for Swiss exporters to India. HS codes, origin certificates, CAROTAR packages, qualified signatures. AI-powered, audit-proof, GDPR-compliant.", "keywords": "TEPA, Switzerland India free trade agreement, EFTA India, CAROTAR, certificate of origin, HS code, EUR.1, customs declaration, approved exporter, Swiss export to India, customs savings, qualified electronic signature, QES, compliance software"}, "fr": {"title": "TEPAflow — Conformité TEPA pour exportateurs suisses vers l'Inde", "description": "Conformité TEPA automatisée pour exportateurs suisses vers l'Inde. Codes HS, certificats d'origine, dossiers CAROTAR, signatures qualifiées. Basé sur l'IA, conforme LPD et RGPD.", "keywords": "TEPA, accord de libre-échange Suisse Inde, AELE Inde, CAROTAR, certificat d'origine, code HS, EUR.1, déclaration douanière, exportateur agréé, export suisse vers l'Inde, économies douanières, signature électronique qualifiée, SEQ, logiciel conformité"}, "it": {"title": "TEPAflow — Conformità TEPA per esportatori svizzeri verso l'India", "description": "Conformità TEPA automatizzata per esportatori svizzeri verso l'India. Codici HS, certificati di origine, pacchetti CAROTAR, firme qualificate. Basato su IA, conforme LPD e GDPR.", "keywords": "TEPA, accordo di libero scambio Svizzera India, AELS India, CAROTAR, certificato di origine, codice HS, EUR.1, dichiarazione doganale, esportatore autorizzato, esportazione svizzera verso l'India, risparmi doganali, firma elettronica qualificata, FEQ, software conformità"}};
+function _updateMeta(lang) {
+  var m = _metas[lang];
+  if (!m) return;
+  document.title = m.title;
+  var desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute('content', m.description);
+  var kw = document.querySelector('meta[name="keywords"]');
+  if (kw) kw.setAttribute('content', m.keywords);
+  var ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', m.title);
+  var ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', m.description);
+}
+</script>
 </head>
 <body>
 
+<div class="lang-bar" role="navigation" aria-label="Language selector">
+  <a href="#" onclick="setLang('de'); return false;" id="btn-de" hreflang="de">DE</a>
+  <span class="lang-sep">·</span>
+  <a href="#" onclick="setLang('en'); return false;" id="btn-en" hreflang="en">EN</a>
+  <span class="lang-sep">·</span>
+  <a href="#" onclick="setLang('fr'); return false;" id="btn-fr" hreflang="fr">FR</a>
+  <span class="lang-sep">·</span>
+  <a href="#" onclick="setLang('it'); return false;" id="btn-it" hreflang="it">IT</a>
+</div>
+
+<!-- Alle 4 Sprachversionen im DOM — Google indexiert alle -->
+<div id="lang-de" class="lang-version" lang="de">
 <!-- ============ NAV ============ -->
 <nav>
   <div class="nav-inner">
@@ -659,7 +826,9 @@
       <a href="#how">So funktioniert's</a>
       <a href="#agents">Plattform</a>
       <a href="#calculator" class="nav-cta">Ersparnis berechnen</a>
-    </div>
+    <div class="lang-switcher">
+      <a href="/de/" class="lang-item active" hreflang="de">DE</a> <a href="/en/" class="lang-item" hreflang="en">EN</a> <a href="/fr/" class="lang-item" hreflang="fr">FR</a> <a href="/it/" class="lang-item" hreflang="it">IT</a>
+    </div></div>
   </div>
 </nav>
 
@@ -671,8 +840,7 @@
       Schluss mit Zöllen, die Sie <em>nicht zahlen müssten</em>.
     </h1>
     <p class="hero-sub">
-      Das Freihandelsabkommen Schweiz–Indien spart Schweizer Exporteuren bis zu CHF 167 Mio. pro Jahr.
-      Doch nur 30–40 % der berechtigten Firmen nutzen es heute. TEPAflow ändert das — automatisiert, audit-fest, ohne Beraterhonorare.
+      Das Freihandelsabkommen Schweiz–Indien spart Schweizer Exporteuren bis zu CHF 167 Mio. pro Jahr. Doch nur 30–40 % der berechtigten Firmen nutzen es heute. TEPAflow ändert das — automatisiert, audit-fest, ohne Beraterhonorare.
     </p>
     <div class="hero-cta-row">
       <a href="#calculator" class="btn-primary">Ihre Ersparnis berechnen</a>
@@ -745,7 +913,7 @@
 <!-- ============ CALCULATOR ============ -->
 <section class="calc-section" id="calculator">
   <div class="section-eyebrow">01 · Sofort-Analyse</div>
-  <h2 class="serif">Wie viel <em>liegen Sie liegen</em>?</h2>
+  <h2 class="serif">Wie viel <em>lassen Sie liegen</em>?</h2>
   <p class="section-sub">
     Tragen Sie Ihre Eckdaten ein. Der Rechner zeigt Ihre voraussichtliche Zollersparnis über die nächsten 10 Jahre — basierend auf dem TEPA-Abbauplan und realen Tarifdaten.
   </p>
@@ -821,7 +989,7 @@
         <div class="lead-success" id="leadSuccess">
           <div class="check">✓</div>
           <strong>Vielen Dank.</strong><br>
-          <span style="font-size: 13px; color: var(--ink-soft);">Ihr Bericht ist auf dem Weg.</span>
+          <span style="font-size: 13px; color: var(--ink-soft);">Ihr TEPA-Savings-Report ist in Ihrem Posteingang.<br>Falls nicht sichtbar: Spam-Ordner prüfen.</span>
         </div>
       </div>
     </div>
@@ -932,7 +1100,923 @@
     <div>kontakt@tepaflow.ch</div>
   </div>
 </footer>
+</div>
 
+<div id="lang-en" class="lang-version" lang="en">
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">TEPA<span>flow</span></a>
+    <div class="nav-links">
+      <a href="#calculator">Calculator</a>
+      <a href="#how">How it works</a>
+      <a href="#agents">Platform</a>
+      <a href="#calculator" class="nav-cta">Calculate savings</a>
+    <div class="lang-switcher">
+      <a href="/de/" class="lang-item" hreflang="de">DE</a> <a href="/en/" class="lang-item active" hreflang="en">EN</a> <a href="/fr/" class="lang-item" hreflang="fr">FR</a> <a href="/it/" class="lang-item" hreflang="it">IT</a>
+    </div></div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">TEPA · in force since 1 October 2025</div>
+    <h1 class="serif">
+      End of customs you <em>shouldn't be paying</em>.
+    </h1>
+    <p class="hero-sub">
+      The Switzerland–India free trade agreement saves Swiss exporters up to CHF 167 million per year. Yet only 30–40% of eligible companies use it today. TEPAflow changes that — automated, audit-proof, without consulting fees.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#calculator" class="btn-primary">Calculate your savings</a>
+      <a href="#how" class="btn-secondary">How it works →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="doc-card doc-card-1">
+      <div class="doc-header">
+        <span>EUR.1 Movement Cert.</span>
+        <span class="mono">№ 2025-1142</span>
+      </div>
+      <div class="doc-title serif">Origin Declaration</div>
+      <div class="doc-row"><span>Exporter</span><strong>Mustermann AG</strong></div>
+      <div class="doc-row"><span>Consignee</span><strong>IND · Mumbai</strong></div>
+      <div class="doc-row"><span>HS code</span><strong>8471.30.00</strong></div>
+      <div class="doc-row"><span>RVC value</span><strong>52.4 %</strong></div>
+      <div class="doc-stamp">Compliant · TEPA Annex 2.A</div>
+    </div>
+
+    <div class="doc-card doc-card-2">
+      <div class="doc-header">
+        <span>HS classification</span>
+        <span class="mono">AI · 92%</span>
+      </div>
+      <div class="doc-title serif">Precision component, hardened</div>
+      <div class="doc-row"><span>Suggestion 1</span><strong>8483.20 · 92 %</strong></div>
+      <div class="doc-row"><span>Suggestion 2</span><strong>8482.10 · 64 %</strong></div>
+      <div class="doc-row"><span>Suggestion 3</span><strong>8483.30 · 38 %</strong></div>
+      <div class="doc-stamp signed">✓ Confirmed by user</div>
+    </div>
+
+    <div class="doc-card doc-card-3">
+      <div class="doc-header">
+        <span>CAROTAR Form-I</span>
+        <span class="mono">IND · 2025-Q4</span>
+      </div>
+      <div class="doc-title serif">Indian importer package</div>
+      <div class="doc-row"><span>Origin criterion</span><strong>RVC ≥ 40 %</strong></div>
+      <div class="doc-row"><span>Value added</span><strong>CHF 14'820</strong></div>
+      <div class="doc-row"><span>Supplier decl.</span><strong>12 / 12 complete</strong></div>
+      <div class="doc-stamp signed">QES · Swisscom Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="num">94<em>%</em></div>
+      <div class="label">of Swiss exports to India become duty-free in stages</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">10<em>yr</em></div>
+      <div class="label">lead over EU competitors (until the EU–India FTA arrives)</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">6<em>×</em></div>
+      <div class="label">faster origin check compared to manual processing</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">CH<em>+EU</em></div>
+      <div class="label">data residency, Swiss and EU privacy compliant, qualified signatures via Swisscom Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="calc-section" id="calculator">
+  <div class="section-eyebrow">01 · Instant analysis</div>
+  <h2 class="serif">How much are you <em>leaving on the table</em>?</h2>
+  <p class="section-sub">
+    Enter your key figures. The calculator shows your expected customs savings over the next 10 years — based on the TEPA tariff schedule and real tariff data.
+  </p>
+
+  <div class="calc-wrap">
+    <div class="calc-form">
+      <div class="field">
+        <label for="branche">Industry</label>
+        <select id="branche">
+          <option value="84">Machinery (HS 84)</option>
+          <option value="30">Pharma & medtech (HS 30)</option>
+          <option value="90">Precision instruments (HS 90)</option>
+          <option value="91">Watches (HS 91)</option>
+          <option value="29">Chemistry (HS 29)</option>
+          <option value="85">Electrical (HS 85)</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="produkt">Product description (optional)</label>
+        <input type="text" id="produkt" placeholder="e.g. precision ball bearing Ø 42 mm, hardened">
+        <div class="help">If provided, our AI suggests the HS code.</div>
+      </div>
+
+      <div class="field">
+        <label for="volumen">Annual export volume to India (CHF)</label>
+        <input type="number" id="volumen" placeholder="z. B. 2'500'000" value="2500000">
+      </div>
+
+      <div class="field">
+        <label for="zoll">Current Indian customs rate (%)</label>
+        <input type="number" id="zoll" placeholder="z. B. 7.5" value="7.5" step="0.1">
+        <div class="help">If unknown: standard values per industry are assumed.</div>
+      </div>
+
+      <button class="calc-cta" onclick="berechnen()">Calculate savings →</button>
+    </div>
+
+    <div class="result-panel" id="resultPanel">
+      <div class="result-empty" id="resultEmpty">
+        <div class="icon">§</div>
+        <strong>Ready to calculate.</strong><br><br>
+        Enter your key figures and click «Calculate savings». You'll immediately receive:
+        <br><br>
+        <span style="color: var(--ink);">→ Annual savings</span><br>
+        <span style="color: var(--ink);">→ Cumulative savings over 10 years</span><br>
+        <span style="color: var(--ink);">→ Detailed tariff schedule on request</span>
+      </div>
+
+      <div class="result-content" id="resultContent">
+        <div class="result-headline">Your expected savings</div>
+        <div class="result-amount" id="amount">CHF —</div>
+        <div class="result-amount-sub">per year after transition period</div>
+
+        <table class="result-table">
+          <tr><td>Current customs burden</td><td id="aktuell">—</td></tr>
+          <tr><td>Customs under TEPA</td><td id="mitTepa">—</td></tr>
+          <tr><td>Transition period</td><td id="frist">—</td></tr>
+          <tr><td>Cumulative savings (10 years)</td><td id="kumuliert">—</td></tr>
+        </table>
+
+        <div class="lead-form" id="leadForm">
+          <div class="lead-form-title serif">Get detailed report</div>
+          <div class="lead-form-sub">We'll send you the full tariff schedule and a compliance checklist.</div>
+          <div class="lead-form-row">
+            <input type="text" id="leadName" placeholder="Your name">
+            <input type="text" id="leadFirma" placeholder="Company">
+          </div>
+          <input type="email" id="leadEmail" placeholder="Email address">
+          <button onclick="leadAbsenden()">Request report</button>
+        </div>
+        <div class="lead-success" id="leadSuccess">
+          <div class="check">✓</div>
+          <strong>Thank you.</strong><br>
+          <span style="font-size: 13px; color: var(--ink-soft);">Your TEPA savings report is in your inbox.<br>If not visible: please check your spam folder.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-eyebrow">02 · Workflow</div>
+    <h2 class="serif">Three steps. <em>Audit-proof.</em></h2>
+    <p class="section-sub">From uploaded data set to signed origin declaration — automatically checked, manually approved, legally archived.</p>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">— STAGE I</div>
+        <div class="step-title serif">Classify & verify</div>
+        <div class="step-desc">
+          AI agent analyses products and bills of materials, proposes HS codes and automatically verifies the origin rule according to TEPA Annex 2.A — including RVC calculation, position jump and de minimis.
+        </div>
+        <div class="step-divider"></div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">— STAGE II</div>
+        <div class="step-title serif">Document & sign</div>
+        <div class="step-desc">
+          Origin declaration, EUR.1 and CAROTAR package are generated, qualified electronically signed (Swisscom Trust Services) and audit-proof archived for 10 years.
+        </div>
+        <div class="step-divider"></div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">— STAGE III</div>
+        <div class="step-title serif">Submit & monitor</div>
+        <div class="step-desc">
+          Direct connection to Passar (Swiss customs) for export declaration. CAROTAR data package delivered structured to the Indian importer. Tariff changes are monitored automatically.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENTS ============ -->
+<section class="agents-section" id="agents">
+  <div class="section-eyebrow">03 · Architecture</div>
+  <h2 class="serif">Eight specialised <em>AI agents</em>. One platform.</h2>
+  <p class="section-sub">
+    Each agent has a clearly defined task. The human remains legally responsible — AI handles the routine.
+  </p>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-num">A · 01</div>
+      <div class="agent-name serif">Classifier</div>
+      <div class="agent-desc">Proposes HS codes with confidence score and reasoning. Escalates to the stronger model when uncertain.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 02</div>
+      <div class="agent-name serif">Origin verifier</div>
+      <div class="agent-desc">Verifies bills of materials against TEPA Annex 2.A. Returns green/yellow/red with concrete improvement suggestions.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 03</div>
+      <div class="agent-name serif">Document generator</div>
+      <div class="agent-desc">Creates origin declaration, EUR.1, CAROTAR package and commercial invoice per TEPA requirements.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 04</div>
+      <div class="agent-name serif">Signature bot</div>
+      <div class="agent-desc">Submits documents to Swisscom Trust for qualified electronic signature (QES, ZertES-compliant).</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 05</div>
+      <div class="agent-name serif">Customs submitter</div>
+      <div class="agent-desc">Files the export declaration directly at Passar (Swiss customs), retrieves status, archives eVV.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 06</div>
+      <div class="agent-name serif">Watcher</div>
+      <div class="agent-desc">Monitors TEPA, CAROTAR and tariff changes daily. Notifies you of impacts on your products.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 07</div>
+      <div class="agent-name serif">Supplier bot</div>
+      <div class="agent-desc">Collects supplier declarations automatically, reminds in multiple stages, evaluates responses.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 08</div>
+      <div class="agent-name serif">Support assistant</div>
+      <div class="agent-desc">Answers 80% of standard questions instantly. Escalates complex topics to human expertise.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="section-eyebrow" style="color: var(--gold);">04 · Pilot programme</div>
+  <h2 class="serif">Become a <em>Founding Member</em>.</h2>
+  <p class="final-cta-sub">
+    The first pilot customers help shape the platform, receive 12 months free plus 50% lifetime discount. Limited to 8 Swiss exporters.
+  </p>
+  <a href="#calculator" class="btn-primary">Request pilot programme</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 TEPAflow · Swiss data protection (FADP) · GDPR-compliant · Hosting EU/CH</div>
+    <div>kontakt@tepaflow.ch</div>
+  </div>
+</footer>
+</div>
+
+<div id="lang-fr" class="lang-version" lang="fr">
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">TEPA<span>flow</span></a>
+    <div class="nav-links">
+      <a href="#calculator">Calculateur</a>
+      <a href="#how">Fonctionnement</a>
+      <a href="#agents">Plateforme</a>
+      <a href="#calculator" class="nav-cta">Calculer l'économie</a>
+    <div class="lang-switcher">
+      <a href="/de/" class="lang-item" hreflang="de">DE</a> <a href="/en/" class="lang-item" hreflang="en">EN</a> <a href="/fr/" class="lang-item active" hreflang="fr">FR</a> <a href="/it/" class="lang-item" hreflang="it">IT</a>
+    </div></div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">TEPA · en vigueur depuis le 1er octobre 2025</div>
+    <h1 class="serif">
+      Terminé, les droits de douane que vous <em>ne devriez pas payer</em>.
+    </h1>
+    <p class="hero-sub">
+      L'accord de libre-échange Suisse–Inde permet aux exportateurs suisses d'économiser jusqu'à CHF 167 mio. par an. Pourtant, seules 30 à 40 % des entreprises éligibles l'utilisent aujourd'hui. TEPAflow change la donne — automatisé, vérifiable, sans honoraires de conseil.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#calculator" class="btn-primary">Calculer votre économie</a>
+      <a href="#how" class="btn-secondary">Comment ça marche →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="doc-card doc-card-1">
+      <div class="doc-header">
+        <span>EUR.1 Movement Cert.</span>
+        <span class="mono">№ 2025-1142</span>
+      </div>
+      <div class="doc-title serif">Déclaration d'origine</div>
+      <div class="doc-row"><span>Exportateur</span><strong>Mustermann AG</strong></div>
+      <div class="doc-row"><span>Destinataire</span><strong>IND · Mumbai</strong></div>
+      <div class="doc-row"><span>Code HS</span><strong>8471.30.00</strong></div>
+      <div class="doc-row"><span>Valeur RVC</span><strong>52.4 %</strong></div>
+      <div class="doc-stamp">Conforme · TEPA annexe 2.A</div>
+    </div>
+
+    <div class="doc-card doc-card-2">
+      <div class="doc-header">
+        <span>Classification HS</span>
+        <span class="mono">IA · 92 %</span>
+      </div>
+      <div class="doc-title serif">Composant de précision, trempé</div>
+      <div class="doc-row"><span>Proposition 1</span><strong>8483.20 · 92 %</strong></div>
+      <div class="doc-row"><span>Proposition 2</span><strong>8482.10 · 64 %</strong></div>
+      <div class="doc-row"><span>Proposition 3</span><strong>8483.30 · 38 %</strong></div>
+      <div class="doc-stamp signed">✓ Validé par l'utilisateur</div>
+    </div>
+
+    <div class="doc-card doc-card-3">
+      <div class="doc-header">
+        <span>CAROTAR Form-I</span>
+        <span class="mono">IND · 2025-Q4</span>
+      </div>
+      <div class="doc-title serif">Dossier importateur indien</div>
+      <div class="doc-row"><span>Critère d'origine</span><strong>RVC ≥ 40 %</strong></div>
+      <div class="doc-row"><span>Valeur ajoutée</span><strong>CHF 14'820</strong></div>
+      <div class="doc-row"><span>Décl. fournisseurs</span><strong>12 / 12 complètes</strong></div>
+      <div class="doc-stamp signed">QES · Swisscom Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="num">94<em>%</em></div>
+      <div class="label">des exportations suisses vers l'Inde deviennent progressivement exemptes de droits</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">10<em>ans</em></div>
+      <div class="label">d'avance sur les concurrents de l'UE (en attendant l'accord UE–Inde)</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">6<em>×</em></div>
+      <div class="label">plus rapide pour la vérification d'origine qu'un traitement manuel</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">CH<em>+EU</em></div>
+      <div class="label">résidence des données, conforme LPD et RGPD, signatures qualifiées via Swisscom Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="calc-section" id="calculator">
+  <div class="section-eyebrow">01 · Analyse instantanée</div>
+  <h2 class="serif">Combien laissez-vous <em>sur la table</em> ?</h2>
+  <p class="section-sub">
+    Entrez vos données clés. Le calculateur affiche vos économies douanières attendues sur les 10 prochaines années — basé sur le calendrier TEPA et des données tarifaires réelles.
+  </p>
+
+  <div class="calc-wrap">
+    <div class="calc-form">
+      <div class="field">
+        <label for="branche">Secteur</label>
+        <select id="branche">
+          <option value="84">Machines (HS 84)</option>
+          <option value="30">Pharma & medtech (HS 30)</option>
+          <option value="90">Instruments de précision (HS 90)</option>
+          <option value="91">Horlogerie (HS 91)</option>
+          <option value="29">Chimie (HS 29)</option>
+          <option value="85">Électrotechnique (HS 85)</option>
+          <option value="other">Autre</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="produkt">Description du produit (facultatif)</label>
+        <input type="text" id="produkt" placeholder="p. ex. roulement de précision Ø 42 mm, trempé">
+        <div class="help">Si renseigné, notre IA propose le code HS.</div>
+      </div>
+
+      <div class="field">
+        <label for="volumen">Volume annuel d'exportation vers l'Inde (CHF)</label>
+        <input type="number" id="volumen" placeholder="z. B. 2'500'000" value="2500000">
+      </div>
+
+      <div class="field">
+        <label for="zoll">Taux douanier indien actuel (%)</label>
+        <input type="number" id="zoll" placeholder="z. B. 7.5" value="7.5" step="0.1">
+        <div class="help">Si inconnu : des valeurs standard par secteur sont utilisées.</div>
+      </div>
+
+      <button class="calc-cta" onclick="berechnen()">Calculer l'économie →</button>
+    </div>
+
+    <div class="result-panel" id="resultPanel">
+      <div class="result-empty" id="resultEmpty">
+        <div class="icon">§</div>
+        <strong>Prêt pour le calcul.</strong><br><br>
+        Entrez vos données clés et cliquez sur «Calculer l'économie». Vous obtiendrez immédiatement :
+        <br><br>
+        <span style="color: var(--ink);">→ Économie annuelle</span><br>
+        <span style="color: var(--ink);">→ Économies cumulées sur 10 ans</span><br>
+        <span style="color: var(--ink);">→ Plan tarifaire détaillé sur demande</span>
+      </div>
+
+      <div class="result-content" id="resultContent">
+        <div class="result-headline">Votre économie attendue</div>
+        <div class="result-amount" id="amount">CHF —</div>
+        <div class="result-amount-sub">par an après la période transitoire</div>
+
+        <table class="result-table">
+          <tr><td>Charge douanière actuelle</td><td id="aktuell">—</td></tr>
+          <tr><td>Charge sous TEPA</td><td id="mitTepa">—</td></tr>
+          <tr><td>Période transitoire</td><td id="frist">—</td></tr>
+          <tr><td>Économies cumulées (10 ans)</td><td id="kumuliert">—</td></tr>
+        </table>
+
+        <div class="lead-form" id="leadForm">
+          <div class="lead-form-title serif">Recevoir le rapport détaillé</div>
+          <div class="lead-form-sub">Nous vous enverrons le calendrier tarifaire complet et une liste de conformité.</div>
+          <div class="lead-form-row">
+            <input type="text" id="leadName" placeholder="Votre nom">
+            <input type="text" id="leadFirma" placeholder="Entreprise">
+          </div>
+          <input type="email" id="leadEmail" placeholder="Adresse e-mail">
+          <button onclick="leadAbsenden()">Demander le rapport</button>
+        </div>
+        <div class="lead-success" id="leadSuccess">
+          <div class="check">✓</div>
+          <strong>Merci.</strong><br>
+          <span style="font-size: 13px; color: var(--ink-soft);">Votre rapport TEPA est dans votre boîte de réception.<br>Sinon, vérifiez votre dossier spam.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-eyebrow">02 · Processus</div>
+    <h2 class="serif">Trois étapes. <em>Auditables.</em></h2>
+    <p class="section-sub">Des données téléchargées à la déclaration d'origine signée — vérifié automatiquement, validé manuellement, archivé légalement.</p>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">— ÉTAPE I</div>
+        <div class="step-title serif">Classer & vérifier</div>
+        <div class="step-desc">
+          Agent IA analyse produits et nomenclatures, propose les codes HS et vérifie automatiquement la règle d'origine selon l'annexe 2.A du TEPA — y compris calcul RVC, saut tarifaire et de minimis.
+        </div>
+        <div class="step-divider"></div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">— ÉTAPE II</div>
+        <div class="step-title serif">Documenter & signer</div>
+        <div class="step-desc">
+          Déclaration d'origine, EUR.1 et dossier CAROTAR sont générés, signés électroniquement de façon qualifiée (Swisscom Trust Services) et archivés de manière auditable pendant 10 ans.
+        </div>
+        <div class="step-divider"></div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">— ÉTAPE III</div>
+        <div class="step-title serif">Soumettre & surveiller</div>
+        <div class="step-desc">
+          Connexion directe à Passar (OFDF) pour la déclaration d'exportation. Dossier CAROTAR transmis de manière structurée à l'importateur indien. Les changements tarifaires sont surveillés automatiquement.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENTS ============ -->
+<section class="agents-section" id="agents">
+  <div class="section-eyebrow">03 · Architecture</div>
+  <h2 class="serif">Huit <em>agents IA spécialisés</em>. Une plateforme.</h2>
+  <p class="section-sub">
+    Chaque agent a une tâche clairement définie. L'humain reste légalement responsable — l'IA gère la routine.
+  </p>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-num">A · 01</div>
+      <div class="agent-name serif">Classificateur</div>
+      <div class="agent-desc">Propose des codes HS avec score de confiance et justification. Escalade vers le modèle plus puissant en cas d'incertitude.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 02</div>
+      <div class="agent-name serif">Vérificateur d'origine</div>
+      <div class="agent-desc">Vérifie les nomenclatures selon l'annexe 2.A du TEPA. Fournit vert/jaune/rouge avec des suggestions d'amélioration concrètes.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 03</div>
+      <div class="agent-name serif">Générateur de documents</div>
+      <div class="agent-desc">Crée déclaration d'origine, EUR.1, dossier CAROTAR et facture commerciale selon les exigences TEPA.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 04</div>
+      <div class="agent-name serif">Bot de signature</div>
+      <div class="agent-desc">Soumet les documents à Swisscom Trust pour la signature électronique qualifiée (SEQ, conforme SCSE).</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 05</div>
+      <div class="agent-name serif">Transmetteur douanier</div>
+      <div class="agent-desc">Soumet la déclaration d'exportation directement à Passar (OFDF), récupère le statut, archive l'eVV.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 06</div>
+      <div class="agent-name serif">Sentinelle</div>
+      <div class="agent-desc">Surveille quotidiennement TEPA, CAROTAR et les changements tarifaires. Vous notifie des impacts sur vos produits.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 07</div>
+      <div class="agent-name serif">Bot fournisseurs</div>
+      <div class="agent-desc">Collecte automatiquement les déclarations fournisseurs, relance en plusieurs étapes, évalue les réponses.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 08</div>
+      <div class="agent-name serif">Assistant support</div>
+      <div class="agent-desc">Répond instantanément à 80 % des questions standard. Escalade les sujets complexes vers l'expertise humaine.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="section-eyebrow" style="color: var(--gold);">04 · Programme pilote</div>
+  <h2 class="serif">Devenez <em>membre fondateur</em>.</h2>
+  <p class="final-cta-sub">
+    Les premiers clients pilotes co-conçoivent la plateforme, bénéficient de 12 mois gratuits et de 50 % de réduction à vie. Limité à 8 exportateurs suisses.
+  </p>
+  <a href="#calculator" class="btn-primary">Demander le programme pilote</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 TEPAflow · Protection des données suisse (LPD) · conforme RGPD · Hébergement UE/CH</div>
+    <div>kontakt@tepaflow.ch</div>
+  </div>
+</footer>
+</div>
+
+<div id="lang-it" class="lang-version" lang="it">
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">TEPA<span>flow</span></a>
+    <div class="nav-links">
+      <a href="#calculator">Calcolatore</a>
+      <a href="#how">Come funziona</a>
+      <a href="#agents">Piattaforma</a>
+      <a href="#calculator" class="nav-cta">Calcola risparmio</a>
+    <div class="lang-switcher">
+      <a href="/de/" class="lang-item" hreflang="de">DE</a> <a href="/en/" class="lang-item" hreflang="en">EN</a> <a href="/fr/" class="lang-item" hreflang="fr">FR</a> <a href="/it/" class="lang-item active" hreflang="it">IT</a>
+    </div></div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">TEPA · in vigore dal 1° ottobre 2025</div>
+    <h1 class="serif">
+      Basta dazi che <em>non dovreste pagare</em>.
+    </h1>
+    <p class="hero-sub">
+      L'accordo di libero scambio Svizzera–India permette agli esportatori svizzeri di risparmiare fino a CHF 167 mio. all'anno. Eppure solo il 30–40 % delle aziende aventi diritto lo utilizza oggi. TEPAflow cambia questo — automatizzato, verificabile, senza onorari di consulenza.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#calculator" class="btn-primary">Calcola il tuo risparmio</a>
+      <a href="#how" class="btn-secondary">Come funziona →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="doc-card doc-card-1">
+      <div class="doc-header">
+        <span>EUR.1 Movement Cert.</span>
+        <span class="mono">№ 2025-1142</span>
+      </div>
+      <div class="doc-title serif">Dichiarazione d'origine</div>
+      <div class="doc-row"><span>Esportatore</span><strong>Mustermann AG</strong></div>
+      <div class="doc-row"><span>Destinatario</span><strong>IND · Mumbai</strong></div>
+      <div class="doc-row"><span>Codice HS</span><strong>8471.30.00</strong></div>
+      <div class="doc-row"><span>Valore RVC</span><strong>52.4 %</strong></div>
+      <div class="doc-stamp">Conforme · TEPA allegato 2.A</div>
+    </div>
+
+    <div class="doc-card doc-card-2">
+      <div class="doc-header">
+        <span>Classificazione HS</span>
+        <span class="mono">IA · 92 %</span>
+      </div>
+      <div class="doc-title serif">Componente di precisione, temprato</div>
+      <div class="doc-row"><span>Proposta 1</span><strong>8483.20 · 92 %</strong></div>
+      <div class="doc-row"><span>Proposta 2</span><strong>8482.10 · 64 %</strong></div>
+      <div class="doc-row"><span>Proposta 3</span><strong>8483.30 · 38 %</strong></div>
+      <div class="doc-stamp signed">✓ Confermato dall'utente</div>
+    </div>
+
+    <div class="doc-card doc-card-3">
+      <div class="doc-header">
+        <span>CAROTAR Form-I</span>
+        <span class="mono">IND · 2025-Q4</span>
+      </div>
+      <div class="doc-title serif">Dossier importatore indiano</div>
+      <div class="doc-row"><span>Criterio di origine</span><strong>RVC ≥ 40 %</strong></div>
+      <div class="doc-row"><span>Valore aggiunto</span><strong>CHF 14'820</strong></div>
+      <div class="doc-row"><span>Dich. fornitori</span><strong>12 / 12 complete</strong></div>
+      <div class="doc-stamp signed">QES · Swisscom Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="num">94<em>%</em></div>
+      <div class="label">delle esportazioni svizzere verso l'India diventano progressivamente esenti da dazi</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">10<em>anni</em></div>
+      <div class="label">di vantaggio sui concorrenti UE (fino all'accordo UE–India)</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">6<em>×</em></div>
+      <div class="label">più veloce verifica d'origine rispetto al processo manuale</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">CH<em>+EU</em></div>
+      <div class="label">residenza dati, conforme LPD e GDPR, firme qualificate tramite Swisscom Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="calc-section" id="calculator">
+  <div class="section-eyebrow">01 · Analisi istantanea</div>
+  <h2 class="serif">Quanto state <em>lasciando sul tavolo</em>?</h2>
+  <p class="section-sub">
+    Inserite i vostri dati principali. Il calcolatore mostra i risparmi doganali attesi sui prossimi 10 anni — sulla base del calendario TEPA e di dati tariffari reali.
+  </p>
+
+  <div class="calc-wrap">
+    <div class="calc-form">
+      <div class="field">
+        <label for="branche">Settore</label>
+        <select id="branche">
+          <option value="84">Macchinari (HS 84)</option>
+          <option value="30">Farma & medtech (HS 30)</option>
+          <option value="90">Strumenti di precisione (HS 90)</option>
+          <option value="91">Orologi (HS 91)</option>
+          <option value="29">Chimica (HS 29)</option>
+          <option value="85">Elettrotecnica (HS 85)</option>
+          <option value="other">Altro</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="produkt">Descrizione del prodotto (opzionale)</label>
+        <input type="text" id="produkt" placeholder="es. cuscinetto di precisione Ø 42 mm, temprato">
+        <div class="help">Se fornito, la nostra IA propone il codice HS.</div>
+      </div>
+
+      <div class="field">
+        <label for="volumen">Volume annuo di esportazione verso l'India (CHF)</label>
+        <input type="number" id="volumen" placeholder="z. B. 2'500'000" value="2500000">
+      </div>
+
+      <div class="field">
+        <label for="zoll">Aliquota doganale indiana attuale (%)</label>
+        <input type="number" id="zoll" placeholder="z. B. 7.5" value="7.5" step="0.1">
+        <div class="help">Se sconosciuto: si utilizzano valori standard per settore.</div>
+      </div>
+
+      <button class="calc-cta" onclick="berechnen()">Calcola risparmio →</button>
+    </div>
+
+    <div class="result-panel" id="resultPanel">
+      <div class="result-empty" id="resultEmpty">
+        <div class="icon">§</div>
+        <strong>Pronto per il calcolo.</strong><br><br>
+        Inserite i dati chiave e cliccate su «Calcola risparmio». Otterrete subito:
+        <br><br>
+        <span style="color: var(--ink);">→ Risparmio annuo</span><br>
+        <span style="color: var(--ink);">→ Risparmi cumulati su 10 anni</span><br>
+        <span style="color: var(--ink);">→ Piano tariffario dettagliato su richiesta</span>
+      </div>
+
+      <div class="result-content" id="resultContent">
+        <div class="result-headline">Il vostro risparmio atteso</div>
+        <div class="result-amount" id="amount">CHF —</div>
+        <div class="result-amount-sub">all'anno dopo il periodo transitorio</div>
+
+        <table class="result-table">
+          <tr><td>Onere doganale attuale</td><td id="aktuell">—</td></tr>
+          <tr><td>Onere sotto TEPA</td><td id="mitTepa">—</td></tr>
+          <tr><td>Periodo transitorio</td><td id="frist">—</td></tr>
+          <tr><td>Risparmi cumulati (10 anni)</td><td id="kumuliert">—</td></tr>
+        </table>
+
+        <div class="lead-form" id="leadForm">
+          <div class="lead-form-title serif">Ricevi il rapporto dettagliato</div>
+          <div class="lead-form-sub">Vi invieremo il piano tariffario completo e una checklist di conformità.</div>
+          <div class="lead-form-row">
+            <input type="text" id="leadName" placeholder="Il vostro nome">
+            <input type="text" id="leadFirma" placeholder="Azienda">
+          </div>
+          <input type="email" id="leadEmail" placeholder="Indirizzo e-mail">
+          <button onclick="leadAbsenden()">Richiedi rapporto</button>
+        </div>
+        <div class="lead-success" id="leadSuccess">
+          <div class="check">✓</div>
+          <strong>Grazie.</strong><br>
+          <span style="font-size: 13px; color: var(--ink-soft);">Il vostro rapporto TEPA è nella casella di posta.<br>Se non visibile: controllate la cartella spam.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-eyebrow">02 · Flusso</div>
+    <h2 class="serif">Tre passi. <em>Verificabili.</em></h2>
+    <p class="section-sub">Dai dati caricati alla dichiarazione d'origine firmata — verificato automaticamente, approvato manualmente, archiviato legalmente.</p>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">— FASE I</div>
+        <div class="step-title serif">Classificare & verificare</div>
+        <div class="step-desc">
+          Agente IA analizza prodotti e distinte base, propone codici HS e verifica automaticamente la regola d'origine secondo l'allegato 2.A TEPA — inclusi calcolo RVC, salto di classificazione e de minimis.
+        </div>
+        <div class="step-divider"></div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">— FASE II</div>
+        <div class="step-title serif">Documentare & firmare</div>
+        <div class="step-desc">
+          Dichiarazione d'origine, EUR.1 e pacchetto CAROTAR vengono generati, firmati elettronicamente in modo qualificato (Swisscom Trust Services) e archiviati in modo verificabile per 10 anni.
+        </div>
+        <div class="step-divider"></div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">— FASE III</div>
+        <div class="step-title serif">Trasmettere & monitorare</div>
+        <div class="step-desc">
+          Collegamento diretto a Passar (UDSC) per la dichiarazione di esportazione. Pacchetto CAROTAR trasmesso in modo strutturato all'importatore indiano. Le modifiche tariffarie sono monitorate automaticamente.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENTS ============ -->
+<section class="agents-section" id="agents">
+  <div class="section-eyebrow">03 · Architettura</div>
+  <h2 class="serif">Otto <em>agenti IA specializzati</em>. Una piattaforma.</h2>
+  <p class="section-sub">
+    Ogni agente ha un compito ben definito. L'umano rimane legalmente responsabile — l'IA gestisce la routine.
+  </p>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-num">A · 01</div>
+      <div class="agent-name serif">Classificatore</div>
+      <div class="agent-desc">Propone codici HS con punteggio di fiducia e motivazione. Scala al modello più potente in caso di incertezza.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 02</div>
+      <div class="agent-name serif">Verificatore di origine</div>
+      <div class="agent-desc">Verifica distinte base rispetto all'allegato 2.A TEPA. Restituisce verde/giallo/rosso con suggerimenti di miglioramento concreti.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 03</div>
+      <div class="agent-name serif">Generatore di documenti</div>
+      <div class="agent-desc">Crea dichiarazione d'origine, EUR.1, pacchetto CAROTAR e fattura commerciale secondo i requisiti TEPA.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 04</div>
+      <div class="agent-name serif">Bot di firma</div>
+      <div class="agent-desc">Trasmette documenti a Swisscom Trust per la firma elettronica qualificata (FEQ, conforme FiEle).</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 05</div>
+      <div class="agent-name serif">Trasmettitore doganale</div>
+      <div class="agent-desc">Inoltra la dichiarazione di esportazione direttamente a Passar (UDSC), recupera lo stato, archivia l'eVV.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 06</div>
+      <div class="agent-name serif">Sentinella</div>
+      <div class="agent-desc">Monitora quotidianamente TEPA, CAROTAR e modifiche tariffarie. Vi notifica gli impatti sui vostri prodotti.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 07</div>
+      <div class="agent-name serif">Bot fornitori</div>
+      <div class="agent-desc">Raccoglie automaticamente le dichiarazioni fornitori, sollecita in più fasi, analizza le risposte.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">A · 08</div>
+      <div class="agent-name serif">Assistente supporto</div>
+      <div class="agent-desc">Risponde all'80 % delle domande standard istantaneamente. Scala i temi complessi all'esperto umano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="section-eyebrow" style="color: var(--gold);">04 · Programma pilota</div>
+  <h2 class="serif">Diventate <em>membro fondatore</em>.</h2>
+  <p class="final-cta-sub">
+    I primi clienti pilota contribuiscono a plasmare la piattaforma, ricevono 12 mesi gratuiti e il 50 % di sconto a vita. Limitato a 8 esportatori svizzeri.
+  </p>
+  <a href="#calculator" class="btn-primary">Richiedi programma pilota</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 TEPAflow · Protezione dati svizzera (LPD) · conforme GDPR · Hosting UE/CH</div>
+    <div>kontakt@tepaflow.ch</div>
+  </div>
+</footer>
+</div>
+
+<!-- Noscript: Zeige Deutsche Version für Crawler ohne JS -->
+<noscript>
+<style>.lang-version { display: none !important; } #lang-de { display: block !important; }</style>
+</noscript>
+
+<!-- Calculator & Formular Logik (aus DE-Version) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://tepaflow.ch/#organization",
+      "name": "TEPAflow",
+      "url": "https://tepaflow.ch/",
+      "logo": "https://tepaflow.ch/logo.png",
+      "description": "Automatische TEPA-Compliance für Schweizer Exporteure nach Indien. HS-Codes, Ursprungsnachweise, CAROTAR-Paket, qualifizierte Signaturen. KI-gestützt, audit-fest, DSG-konform. Bis CHF 167 Mio. Zollersparnis pro Jahr für die Schweiz.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "michael@tepaflow.ch",
+        "telephone": "+41-78-878-15-08",
+        "contactType": "sales",
+        "availableLanguage": ["de", "en", "fr", "it"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH"
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "TEPAflow",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Trade Compliance Software",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "6900",
+        "priceCurrency": "CHF",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "6900",
+          "priceCurrency": "CHF",
+          "unitText": "YEAR"
+        }
+      },
+      "description": "Automatische TEPA-Compliance für Schweizer Exporteure nach Indien. HS-Codes, Ursprungsnachweise, CAROTAR-Paket, qualifizierte Signaturen. KI-gestützt, audit-fest, DSG-konform. Bis CHF 167 Mio. Zollersparnis pro Jahr für die Schweiz.",
+      "inLanguage": ["de", "en", "fr", "it"],
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Swiss SME exporters to India"
+      }
+    }
+  ]
+}
+</script>
 <script>
 // ====================================================================
 // TEPA Tarifsätze (vereinfachte Referenzdaten für die Demo)
@@ -1005,31 +2089,164 @@ function leadAbsenden() {
   const name = document.getElementById('leadName').value.trim();
   const firma = document.getElementById('leadFirma').value.trim();
   const email = document.getElementById('leadEmail').value.trim();
+  const btn = document.querySelector('#leadForm button');
 
   if (!email || !email.includes('@')) {
     alert('Bitte gültige E-Mail-Adresse eingeben.');
     return;
   }
+  if (!name) {
+    alert('Bitte Ihren Namen eingeben.');
+    return;
+  }
 
-  // In der Demo: Daten nur lokal speichern (in echtem Setup → API-Call)
-  const lead = {
-    name, firma, email,
-    branche: document.getElementById('branche').value,
-    produkt: document.getElementById('produkt').value,
-    volumen: document.getElementById('volumen').value,
-    zoll: document.getElementById('zoll').value,
-    timestamp: new Date().toISOString()
-  };
-  console.log('Lead erfasst:', lead);
+  // Daten sammeln
+  const branche = document.getElementById('branche').value;
+  const produkt = document.getElementById('produkt').value;
+  const volumen = document.getElementById('volumen').value;
+  const zoll = document.getElementById('zoll').value;
 
-  document.getElementById('leadForm').style.display = 'none';
-  document.getElementById('leadSuccess').style.display = 'block';
+  const ersparnisJahr = document.getElementById('amount').textContent;
+  const aktuellZoll = document.getElementById('aktuell').textContent;
+  const mitTepaZoll = document.getElementById('mitTepa').textContent;
+  const abbauFrist = document.getElementById('frist').textContent;
+  const kumuliert = document.getElementById('kumuliert').textContent;
+
+  // Formspree-Endpoint
+  const FORMSPREE_ID = 'mgornrkg';
+  const endpoint = 'https://formspree.io/f/' + FORMSPREE_ID;
+
+  // Button-State während Submit
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet...';
+
+  fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      // Kundenangaben
+      name: name,
+      firma: firma,
+      email: email,
+      _replyto: email,
+
+      // Kalkulations-Daten
+      branche: branche,
+      produkt: produkt || '—',
+      exportvolumen: volumen,
+      aktueller_zollsatz: zoll,
+
+      // Berechnete Ergebnisse
+      ersparnis_pro_jahr: ersparnisJahr,
+      aktueller_zoll: aktuellZoll,
+      zoll_unter_tepa: mitTepaZoll,
+      abbau_zeitraum: abbauFrist,
+      kumuliert_10_jahre: kumuliert,
+
+      // Meta
+      timestamp: new Date().toLocaleString('de-CH'),
+      quelle: 'TEPAflow Landingpage — Calculator',
+
+      // Email-Betreff
+      _subject: 'Neuer TEPA-Lead: ' + (firma || name),
+
+      // Auto-Reply an Kunden (Formspree-Feature)
+      _autoresponse: 'Guten Tag ' + name + ',\n\n' +
+        'vielen Dank für Ihr Interesse an TEPAflow.\n\n' +
+        'Ihr persönlicher TEPA-Savings-Report steht hier zum Download bereit:\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'Basierend auf Ihren Eingaben rechnen wir für Sie mit:\n' +
+        '— Exportvolumen: CHF ' + volumen + '\n' +
+        '— Geschätzte Ersparnis pro Jahr: ' + ersparnisJahr + '\n' +
+        '— Kumulierte Ersparnis über 10 Jahre: ' + kumuliert + '\n\n' +
+        'Gerne besprechen wir Ihre Situation in einem unverbindlichen Gespräch.\n' +
+        'Antworten Sie einfach auf diese Mail, oder rufen Sie an: +41 78 878 15 08\n\n' +
+        'Herzliche Grüsse\n' +
+        'Michael B. Müller\n' +
+        'TEPAflow\n' +
+        'tepaflow.ch'
+    })
+  })
+  .then(function(response) {
+    if (response.ok) {
+      document.getElementById('leadForm').style.display = 'none';
+      document.getElementById('leadSuccess').style.display = 'block';
+    } else {
+      throw new Error('Server-Fehler');
+    }
+  })
+  .catch(function(error) {
+    console.error('Lead-Submit Fehler:', error);
+    alert('Leider konnte Ihre Anfrage nicht gesendet werden. Bitte versuchen Sie es nochmal, oder schreiben Sie direkt an michael@tepaflow.ch');
+    btn.disabled = false;
+    btn.textContent = 'Bericht anfordern';
+  });
 }
 
 // Auto-berechnen bei Erstaufruf für Demo-Zwecke
 window.addEventListener('DOMContentLoaded', () => {
   // Nichts auto-berechnen; lassen wir leer für authentischen Eindruck
 });
+</script>
+
+<!-- Sprach-Umschalter Logik -->
+<script>
+
+function setLang(lang) {
+  // Alle Versionen verstecken
+  document.querySelectorAll('.lang-version').forEach(function(el) {
+    el.classList.remove('active');
+  });
+  // Aktive Version zeigen
+  var active = document.getElementById('lang-' + lang);
+  if (active) active.classList.add('active');
+
+  // Buttons aktualisieren
+  document.querySelectorAll('.lang-bar a').forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  var activeBtn = document.getElementById('btn-' + lang);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  // HTML lang-Attribut setzen (für Accessibility)
+  var langMap = {de: 'de-CH', en: 'en', fr: 'fr-CH', it: 'it-CH'};
+  document.documentElement.lang = langMap[lang] || lang;
+
+  // Im Browser-Speicher merken
+  try { localStorage.setItem('tepaflow-lang', lang); } catch(e) {}
+}
+
+function detectLang() {
+  // 1. Gespeicherte Präferenz
+  try {
+    var saved = localStorage.getItem('tepaflow-lang');
+    if (saved && ['de','en','fr','it'].indexOf(saved) >= 0) return saved;
+  } catch(e) {}
+
+  // 2. Browser-Sprache
+  var nav = (navigator.language || navigator.userLanguage || 'de').toLowerCase();
+  if (nav.startsWith('fr')) return 'fr';
+  if (nav.startsWith('it')) return 'it';
+  if (nav.startsWith('en')) return 'en';
+  return 'de';
+}
+
+// Beim Laden
+(function() {
+  var lang = detectLang();
+  setLang(lang);
+})();
+
+
+// Meta-Tags auch bei Sprachw echsel aktualisieren
+var _origSetLang = setLang;
+setLang = function(lang) {
+  _origSetLang(lang);
+  _updateMeta(lang);
+};
 </script>
 
 </body>

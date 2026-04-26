@@ -2135,7 +2135,7 @@ function leadAbsenden() {
     de: 'Guten Tag ' + name + ',\n\n' +
         'vielen Dank für Ihr Interesse an TEPAflow.\n\n' +
         'Ihr TEPA-Savings-Report steht hier bereit:\n' +
-        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report-de.pdf\n\n' +
         'Geschätzte Ersparnis pro Jahr: ' + ersparnisJahr + '\n' +
         'Kumuliert über 10 Jahre: ' + kumuliert + '\n\n' +
         'Gerne besprechen wir Ihre Situation unverbindlich.\n' +
@@ -2145,7 +2145,7 @@ function leadAbsenden() {
     en: 'Dear ' + name + ',\n\n' +
         'thank you for your interest in TEPAflow.\n\n' +
         'Your TEPA Savings Report is available here:\n' +
-        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report-en.pdf\n\n' +
         'Estimated savings per year: ' + ersparnisJahr + '\n' +
         'Cumulative over 10 years: ' + kumuliert + '\n\n' +
         'We would be happy to discuss your situation with no obligation.\n' +
@@ -2155,7 +2155,7 @@ function leadAbsenden() {
     fr: 'Bonjour ' + name + ',\n\n' +
         'merci de votre intérêt pour TEPAflow.\n\n' +
         'Votre rapport TEPA est disponible ici :\n' +
-        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report-fr.pdf\n\n' +
         'Économie annuelle estimée : ' + ersparnisJahr + '\n' +
         'Cumulé sur 10 ans : ' + kumuliert + '\n\n' +
         'Nous discuterons volontiers de votre situation sans engagement.\n' +
@@ -2165,7 +2165,7 @@ function leadAbsenden() {
     it: 'Gentile ' + name + ',\n\n' +
         'grazie per il vostro interesse in TEPAflow.\n\n' +
         'Il vostro rapporto TEPA è disponibile qui:\n' +
-        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report-it.pdf\n\n' +
         'Risparmio annuo stimato: ' + ersparnisJahr + '\n' +
         'Cumulato su 10 anni: ' + kumuliert + '\n\n' +
         'Discuteremo volentieri della vostra situazione senza impegno.\n' +
@@ -2280,12 +2280,43 @@ function detectLang() {
 })();
 
 
-// Meta-Tags auch bei Sprachw echsel aktualisieren
+// Meta-Tags auch bei Sprachwechsel aktualisieren
 var _origSetLang = setLang;
 setLang = function(lang) {
   _origSetLang(lang);
   _updateMeta(lang);
 };
+
+
+// ============ ANCHOR-FIX ============
+// Da alle 4 Sprachversionen die gleichen IDs haben (#calculator, #how, #agents),
+// muss der Klick auf einen Anchor-Link zur AKTIVEN Sprachversion scrollen,
+// nicht zur ersten (deutschen) im DOM.
+document.addEventListener('click', function(e) {
+  // Nächstgelegenes <a> Element finden
+  var link = e.target.closest('a');
+  if (!link) return;
+
+  var href = link.getAttribute('href');
+  if (!href || !href.startsWith('#') || href.length < 2) return;
+  if (href === '#') return; // Sprach-Umschalter ignorieren
+
+  // Aktive Sprachversion finden
+  var activeLang = document.querySelector('.lang-version.active');
+  if (!activeLang) return;
+
+  // Ziel-Element in der aktiven Sprachversion finden
+  var targetId = href.substring(1); // ohne #
+  var target = activeLang.querySelector('#' + targetId) ||
+               activeLang.querySelector('[id="' + targetId + '"]');
+
+  if (target) {
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // URL aktualisieren ohne Sprung
+    history.replaceState(null, '', href);
+  }
+});
 </script>
 
 </body>

@@ -2025,25 +2025,29 @@ function formatCHF(n) {
 }
 
 function berechnen() {
-  const branche = document.getElementById('branche').value;
-  const volumen = parseFloat(document.getElementById('volumen').value) || 0;
-  const zollInput = parseFloat(document.getElementById('zoll').value);
+  // Aktive Sprachversion
+  const activeLang = document.querySelector('.lang-version.active') || document.getElementById('lang-de');
+  const langId = activeLang ? activeLang.id.replace('lang-', '') : 'de';
 
-  if (volumen <= 0) {
-    alert('Bitte ein Exportvolumen eingeben.');
-    return;
-  }
+  const branche   = (activeLang.querySelector('[id^="branche"]') || {}).value || '84';
+  const volumenEl = activeLang.querySelector('[id^="volumen"]');
+  const zollEl    = activeLang.querySelector('[id^="zoll"]');
+  const volumen   = parseFloat(volumenEl ? volumenEl.value : 0) || 0;
+  const zollInput = parseFloat(zollEl ? zollEl.value : 0);
 
-  const tarif = tarifData[branche];
+  const volAlert = { de: 'Bitte ein Exportvolumen eingeben.', en: 'Please enter an export volume.', fr: 'Veuillez saisir un volume d\'exportation.', it: 'Inserire un volume di esportazione.' };
+  if (volumen <= 0) { alert(volAlert[langId] || volAlert['de']); return; }
+
+  const tarif = tarifData[branche] || tarifData['84'];
   const aktuellerSatz = !isNaN(zollInput) && zollInput > 0 ? zollInput : tarif.aktuellDefault;
   const zielSatz = tarif.zielSatz;
   const abbauJahre = tarif.abbauJahre;
 
-  const aktuellerZoll = volumen * (aktuellerSatz / 100);
-  const tepaZoll = volumen * (zielSatz / 100);
-  const ersparnisJahr = aktuellerZoll - tepaZoll;
+  const aktuellerZoll  = volumen * (aktuellerSatz / 100);
+  const tepaZoll       = volumen * (zielSatz / 100);
+  const ersparnisJahr  = aktuellerZoll - tepaZoll;
 
-  // Kumulierte Ersparnis über 10 Jahre mit linearem Abbau in den ersten X Jahren
+  // Kumulierte Ersparnis über 10 Jahre mit linearem Abbau
   let kumuliert = 0;
   for (let j = 1; j <= 10; j++) {
     let satzInJahrJ;
@@ -2052,124 +2056,171 @@ function berechnen() {
     } else {
       satzInJahrJ = aktuellerSatz - ((aktuellerSatz - zielSatz) * j / abbauJahre);
     }
-    const ersparnisInJahrJ = volumen * ((aktuellerSatz - satzInJahrJ) / 100);
-    kumuliert += ersparnisInJahrJ;
+    kumuliert += volumen * ((aktuellerSatz - satzInJahrJ) / 100);
   }
 
-  // UI-Update
-  document.getElementById('amount').textContent = formatCHF(ersparnisJahr);
-  document.getElementById('aktuell').textContent = formatCHF(aktuellerZoll) + ' / Jahr';
-  document.getElementById('mitTepa').textContent = formatCHF(tepaZoll) + ' / Jahr';
-  document.getElementById('frist').textContent = abbauJahre === 0 ? 'sofort' : abbauJahre + ' Jahre';
-  document.getElementById('kumuliert').textContent = formatCHF(kumuliert);
+  // «Jahre» in der richtigen Sprache
+  const jahreTxt = { de: 'Jahre', en: 'years', fr: 'ans', it: 'anni' };
+  const sofortTxt = { de: 'sofort', en: 'immediately', fr: 'immédiatement', it: 'immediatamente' };
+  const freiTxt = abbauJahre === 0 ? (sofortTxt[langId] || 'sofort') : abbauJahre + ' ' + (jahreTxt[langId] || 'Jahre');
+  const jahrTxt = { de: '/ Jahr', en: '/ year', fr: '/ an', it: '/ anno' };
 
-  document.getElementById('resultEmpty').style.display = 'none';
-  document.getElementById('resultContent').classList.add('visible');
-  document.getElementById('resultPanel').classList.add('has-result');
+  // UI-Update in der aktiven Sprachversion
+  const set = (selector, val) => {
+    const el = activeLang.querySelector('[id^="' + selector + '"]');
+    if (el) el.textContent = val;
+  };
+  set('amount',    formatCHF(ersparnisJahr));
+  set('aktuell',   formatCHF(aktuellerZoll) + ' ' + (jahrTxt[langId] || '/ Jahr'));
+  set('mitTepa',   formatCHF(tepaZoll)      + ' ' + (jahrTxt[langId] || '/ Jahr'));
+  set('frist',     freiTxt);
+  set('kumuliert', formatCHF(kumuliert));
 
-  // Smooth scroll into view if needed
+  const emptyEl   = activeLang.querySelector('[id^="resultEmpty"]');
+  const contentEl = activeLang.querySelector('[id^="resultContent"]');
+  const panelEl   = activeLang.querySelector('[id^="resultPanel"]');
+  if (emptyEl)   emptyEl.style.display = 'none';
+  if (contentEl) contentEl.classList.add('visible');
+  if (panelEl)   panelEl.classList.add('has-result');
+
   setTimeout(() => {
-    document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (panelEl) panelEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 100);
 }
 
 function leadAbsenden() {
-  const name = document.getElementById('leadName').value.trim();
-  const firma = document.getElementById('leadFirma').value.trim();
-  const email = document.getElementById('leadEmail').value.trim();
-  const btn = document.querySelector('#leadForm button');
+  // Aktive Sprachversion ermitteln
+  const activeLang = document.querySelector('.lang-version.active') || document.getElementById('lang-de');
+  const langId = activeLang ? activeLang.id.replace('lang-', '') : 'de';
 
-  if (!email || !email.includes('@')) {
-    alert('Bitte gültige E-Mail-Adresse eingeben.');
-    return;
-  }
-  if (!name) {
-    alert('Bitte Ihren Namen eingeben.');
-    return;
-  }
+  // Felder aus der aktiven Sprachversion lesen
+  const nameEl   = activeLang.querySelector('[id^="leadName"]') || activeLang.querySelector('input[type="text"]');
+  const firmaEl  = activeLang.querySelectorAll('input[type="text"]')[1];
+  const emailEl  = activeLang.querySelector('input[type="email"]');
+  const btn      = activeLang.querySelector('#leadForm button') || activeLang.querySelector('.lead-form button');
 
-  // Daten sammeln
-  const branche = document.getElementById('branche').value;
-  const produkt = document.getElementById('produkt').value;
-  const volumen = document.getElementById('volumen').value;
-  const zoll = document.getElementById('zoll').value;
+  const name  = nameEl  ? nameEl.value.trim()  : '';
+  const firma = firmaEl ? firmaEl.value.trim()  : '';
+  const email = emailEl ? emailEl.value.trim()  : '';
 
-  const ersparnisJahr = document.getElementById('amount').textContent;
-  const aktuellZoll = document.getElementById('aktuell').textContent;
-  const mitTepaZoll = document.getElementById('mitTepa').textContent;
-  const abbauFrist = document.getElementById('frist').textContent;
-  const kumuliert = document.getElementById('kumuliert').textContent;
+  // Validierung in der richtigen Sprache
+  const alerts = {
+    de: { email: 'Bitte gültige E-Mail-Adresse eingeben.', name: 'Bitte Ihren Namen eingeben.' },
+    en: { email: 'Please enter a valid email address.', name: 'Please enter your name.' },
+    fr: { email: 'Veuillez saisir une adresse e-mail valide.', name: 'Veuillez saisir votre nom.' },
+    it: { email: 'Inserire un indirizzo e-mail valido.', name: 'Inserire il vostro nome.' }
+  };
+  const t = alerts[langId] || alerts['de'];
+
+  if (!email || !email.includes('@')) { alert(t.email); return; }
+  if (!name) { alert(t.name); return; }
+
+  // Kalkulations-Daten aus der aktiven Version lesen
+  const branche     = (activeLang.querySelector('[id^="branche"]') || {}).value || '';
+  const produkt     = (activeLang.querySelector('[id^="produkt"]') || {}).value || '';
+  const volumen     = (activeLang.querySelector('[id^="volumen"]') || {}).value || '';
+  const zoll        = (activeLang.querySelector('[id^="zoll"]')   || {}).value || '';
+  const ersparnisJahr = (activeLang.querySelector('[id^="amount"]')   || {}).textContent || '';
+  const aktuellZoll   = (activeLang.querySelector('[id^="aktuell"]')  || {}).textContent || '';
+  const mitTepaZoll   = (activeLang.querySelector('[id^="mitTepa"]')  || {}).textContent || '';
+  const abbauFrist    = (activeLang.querySelector('[id^="frist"]')    || {}).textContent || '';
+  const kumuliert     = (activeLang.querySelector('[id^="kumuliert"]') || {}).textContent || '';
+
+  // Button-Zustand setzen
+  const sending = { de: 'Wird gesendet...', en: 'Sending...', fr: 'Envoi...', it: 'Invio...' };
+  if (btn) { btn.disabled = true; btn.textContent = sending[langId] || sending['de']; }
+
+  // Auto-Reply Text je Sprache
+  const autoResponses = {
+    de: 'Guten Tag ' + name + ',\n\n' +
+        'vielen Dank für Ihr Interesse an TEPAflow.\n\n' +
+        'Ihr TEPA-Savings-Report steht hier bereit:\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'Geschätzte Ersparnis pro Jahr: ' + ersparnisJahr + '\n' +
+        'Kumuliert über 10 Jahre: ' + kumuliert + '\n\n' +
+        'Gerne besprechen wir Ihre Situation unverbindlich.\n' +
+        'Antworten Sie auf diese Mail oder rufen Sie an: +41 78 878 15 08\n\n' +
+        'Herzliche Grüsse\nMichael B. Müller\nTEPAflow · tepaflow.ch',
+
+    en: 'Dear ' + name + ',\n\n' +
+        'thank you for your interest in TEPAflow.\n\n' +
+        'Your TEPA Savings Report is available here:\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'Estimated savings per year: ' + ersparnisJahr + '\n' +
+        'Cumulative over 10 years: ' + kumuliert + '\n\n' +
+        'We would be happy to discuss your situation with no obligation.\n' +
+        'Simply reply to this email or call: +41 78 878 15 08\n\n' +
+        'Best regards\nMichael B. Müller\nTEPAflow · tepaflow.ch',
+
+    fr: 'Bonjour ' + name + ',\n\n' +
+        'merci de votre intérêt pour TEPAflow.\n\n' +
+        'Votre rapport TEPA est disponible ici :\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'Économie annuelle estimée : ' + ersparnisJahr + '\n' +
+        'Cumulé sur 10 ans : ' + kumuliert + '\n\n' +
+        'Nous discuterons volontiers de votre situation sans engagement.\n' +
+        'Répondez à ce mail ou appelez : +41 78 878 15 08\n\n' +
+        'Cordialement\nMichael B. Müller\nTEPAflow · tepaflow.ch',
+
+    it: 'Gentile ' + name + ',\n\n' +
+        'grazie per il vostro interesse in TEPAflow.\n\n' +
+        'Il vostro rapporto TEPA è disponibile qui:\n' +
+        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
+        'Risparmio annuo stimato: ' + ersparnisJahr + '\n' +
+        'Cumulato su 10 anni: ' + kumuliert + '\n\n' +
+        'Discuteremo volentieri della vostra situazione senza impegno.\n' +
+        'Rispondete a questa mail o chiamate: +41 78 878 15 08\n\n' +
+        'Cordiali saluti\nMichael B. Müller\nTEPAflow · tepaflow.ch'
+  };
 
   // Formspree-Endpoint
   const FORMSPREE_ID = 'mgornrkg';
   const endpoint = 'https://formspree.io/f/' + FORMSPREE_ID;
 
-  // Button-State während Submit
-  btn.disabled = true;
-  btn.textContent = 'Wird gesendet...';
-
   fetch(endpoint, {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      // Kundenangaben
       name: name,
       firma: firma,
       email: email,
       _replyto: email,
-
-      // Kalkulations-Daten
+      sprache: langId.toUpperCase(),
       branche: branche,
       produkt: produkt || '—',
       exportvolumen: volumen,
       aktueller_zollsatz: zoll,
-
-      // Berechnete Ergebnisse
       ersparnis_pro_jahr: ersparnisJahr,
       aktueller_zoll: aktuellZoll,
       zoll_unter_tepa: mitTepaZoll,
       abbau_zeitraum: abbauFrist,
       kumuliert_10_jahre: kumuliert,
-
-      // Meta
       timestamp: new Date().toLocaleString('de-CH'),
-      quelle: 'TEPAflow Landingpage — Calculator',
-
-      // Email-Betreff
-      _subject: 'Neuer TEPA-Lead: ' + (firma || name),
-
-      // Auto-Reply an Kunden (Formspree-Feature)
-      _autoresponse: 'Guten Tag ' + name + ',\n\n' +
-        'vielen Dank für Ihr Interesse an TEPAflow.\n\n' +
-        'Ihr persönlicher TEPA-Savings-Report steht hier zum Download bereit:\n' +
-        'https://tepaflow.ch/TEPA-Savings-Report.pdf\n\n' +
-        'Basierend auf Ihren Eingaben rechnen wir für Sie mit:\n' +
-        '— Exportvolumen: CHF ' + volumen + '\n' +
-        '— Geschätzte Ersparnis pro Jahr: ' + ersparnisJahr + '\n' +
-        '— Kumulierte Ersparnis über 10 Jahre: ' + kumuliert + '\n\n' +
-        'Gerne besprechen wir Ihre Situation in einem unverbindlichen Gespräch.\n' +
-        'Antworten Sie einfach auf diese Mail, oder rufen Sie an: +41 78 878 15 08\n\n' +
-        'Herzliche Grüsse\n' +
-        'Michael B. Müller\n' +
-        'TEPAflow\n' +
-        'tepaflow.ch'
+      quelle: 'TEPAflow Landingpage — Calculator (' + langId.toUpperCase() + ')',
+      _subject: 'Neuer TEPA-Lead [' + langId.toUpperCase() + ']: ' + (firma || name),
+      _autoresponse: autoResponses[langId] || autoResponses['de']
     })
   })
   .then(function(response) {
     if (response.ok) {
-      document.getElementById('leadForm').style.display = 'none';
-      document.getElementById('leadSuccess').style.display = 'block';
+      const leadForm    = activeLang.querySelector('#leadForm')    || activeLang.querySelector('.lead-form');
+      const leadSuccess = activeLang.querySelector('#leadSuccess') || activeLang.querySelector('.lead-success');
+      if (leadForm)    leadForm.style.display    = 'none';
+      if (leadSuccess) leadSuccess.style.display = 'block';
     } else {
       throw new Error('Server-Fehler');
     }
   })
   .catch(function(error) {
     console.error('Lead-Submit Fehler:', error);
-    alert('Leider konnte Ihre Anfrage nicht gesendet werden. Bitte versuchen Sie es nochmal, oder schreiben Sie direkt an michael@tepaflow.ch');
-    btn.disabled = false;
+    const errMsg = {
+      de: 'Anfrage konnte nicht gesendet werden. Bitte direkt schreiben: michael@tepaflow.ch',
+      en: 'Request could not be sent. Please write directly: michael@tepaflow.ch',
+      fr: 'La demande n\'a pas pu être envoyée. Écrivez à : michael@tepaflow.ch',
+      it: 'Richiesta non inviata. Scrivere a: michael@tepaflow.ch'
+    };
+    alert(errMsg[langId] || errMsg['de']);
+    if (btn) { btn.disabled = false; btn.textContent = sending[langId] || 'Senden'; }
     btn.textContent = 'Bericht anfordern';
   });
 }
